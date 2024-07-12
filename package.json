@@ -1,0 +1,22 @@
+{
+  "name": "flist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.14",
+    "vue": "^3.4.31",
+    "vuepress": "2.0.0-rc.14"
+  },
+  "dependencies": {
+    "typescript": "^5.5.3"
+  }
+}
