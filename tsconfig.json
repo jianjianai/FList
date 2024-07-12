@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node16", // 或 "nodenext"
+    "module": "ESNext",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}
