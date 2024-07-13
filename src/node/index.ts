@@ -1,5 +1,6 @@
 import {createPage, Page, Theme} from "vuepress";
 import { getDirname, path } from 'vuepress/utils'
+import {FrontmatterChildrenFileData, FrontmatterFileData} from "../type/index.js";
 
 const __dirname = getDirname(import.meta.url)
 
@@ -46,6 +47,16 @@ export function FileList(repositoryList:{path:string,user:string,repository:stri
                         }else {
                             joinFolder(folder1,childrenKey,intoFile as Folder);
                         }
+                    }
+                    if (folder1.content){
+                        folder1.content += "\n\n" + folder2.content;
+                    }else {
+                        folder1.content = folder2.content;
+                    }
+                    if (folder1.title){
+                        folder1.title += " " + folder2.title;
+                    }else {
+                        folder1.title = folder2.title;
                     }
                 }
                 //将文件夹放到文件夹
@@ -135,20 +146,17 @@ export function FileList(repositoryList:{path:string,user:string,repository:stri
                 }
 
                 const pagePromises:Promise<Page>[] = [];
-                type FrontmatterFileData = {
-                    name:string,
-                    size:number,
-                    updateTime:number,
-                }
+
                 function createFileTreeToPage(path:string,folder:Folder){
                     //给自己创建页面
-                    const childrenData:FrontmatterFileData[] = [];
+                    const childrenData:FrontmatterChildrenFileData[] = [];
                     for (let childrenKey in folder.children) {
                         const children = folder.children[childrenKey];
                         childrenData.push({
                             name:childrenKey,
                             size:children.size,
-                            updateTime:children.updateTime
+                            updateTime:children.updateTime,
+                            isFolder:!isFile(children)
                         });
                     }
                     console.log(path+"/",85748);
@@ -156,7 +164,9 @@ export function FileList(repositoryList:{path:string,user:string,repository:stri
                         path: path+"/",
                         frontmatter:{
                             layout: 'Folder',
-                            children: childrenData
+                            children: childrenData,
+                            title: folder.title,
+                            hasContent : !!folder.content,
                         },
                         content:folder.content,
                     }));
@@ -171,14 +181,18 @@ export function FileList(repositoryList:{path:string,user:string,repository:stri
                         //如果是文件则给文件创建
                         childrenNameFile = childrenNameFile as File;
                         console.log(path+"/"+childrenName+"/",84765);
+                        const data:FrontmatterFileData = {
+                            url:childrenNameFile.url,
+                            size:childrenNameFile.size,
+                            updateTime:childrenNameFile.updateTime,
+                            name:childrenName
+                        }
                         pagePromises.push(createPage(app,{
                             path:path+"/"+childrenName+"/",
                             frontmatter:{
                                 layout: 'File',
-                                file:{
-                                    url:childrenNameFile.url,
-                                    size:childrenNameFile.size,
-                                }
+                                title: childrenName,
+                                file:data
                             }
                         }));
                     }

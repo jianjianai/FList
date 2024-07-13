@@ -1,0 +1,30 @@
+@import "./github-markdown.css";
+
+html,body,#app{
+    margin:0;
+    border:0;
+    padding:0;
+    width: 100vw;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+:root{
+    font-size: 16px;
+    --color:black;
+    color:var(--color);
+    --color-op1: rgba(0, 0, 0, 0.6);
+}
+:root{
+    --page-bgc: #f7f8fa;
+    --mian-box-bgc: white;
+    --mian-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.09), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --logo-c:#00b2ff;
+    --a-button-bg: #e2f4ff;
+    --a-button-bg-h: #c5e2f3;
+    --a-button-c: #0092ff;
+    --notification-bgc: var(--mian-box-bgc);
+    --notification-shadow: var(--mian-box-shadow);
+    --buttonLink-bg-h:rgba(132, 133, 141, 0.18);
+    --notification-bg-close-h:var(--buttonLink-bg-h);
+}

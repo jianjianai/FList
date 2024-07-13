@@ -3,6 +3,7 @@ import Layout from "./layouts/Layout.vue";
 import NotFound from "./layouts/NotFound.vue";
 import Folder from "./layouts/Folder.vue";
 import File from "./layouts/File.vue";
+import "./css/main.css"
 
 export default defineClientConfig({
     enhance({ app, router, siteData }) {},

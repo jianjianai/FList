@@ -1,0 +1,3 @@
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="100%" height="100%"><path xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" d="M4 9.5C4 7.568 5.568 6 7.5 6h9.942a3.5 3.5 0 0 1 2.894 1.53l2.808 4.126a.5.5 0 0 0 .414.22H40.5a3.5 3.5 0 0 1 3.5 3.5V38.5a3.5 3.5 0 0 1-3.5 3.5h-33A3.5 3.5 0 0 1 4 38.5z"></path></svg>
+</template>
