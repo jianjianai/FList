@@ -7,4 +7,5 @@ export default defineUserConfig({
   theme: FileList([
     {path:"",user:"jianjianai",repository:"alist-github-releases-files"}
   ]),
+  pagePatterns:[]
 })

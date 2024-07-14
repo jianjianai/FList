@@ -20,8 +20,10 @@ function defineViewComponent(name:string,f:()=>Promise<Component>):ViewComponent
 }
 const GenericFileDown = defineViewComponent("文件下载",()=>import("./GenericFileDown.vue"));
 const VideoPlayer = defineViewComponent("视频播放",()=>import("./VideoPlayer.vue"))
+const MusicPlayer = defineViewComponent("音乐播放",()=>import("./MusicPlayer.vue"));
 const fileTypesSuffixConfig:[string[],ViewComponent[]][] = [
-    [[".mp4",".mkv",".webm",".m3u8",".ts",".avi",".mov",".wmv",".flv"],[VideoPlayer,GenericFileDown]],
+    [[".mp4",".mkv",".webm",".m3u8",".ts",".avi",".mov",".wmv",".flv"],[VideoPlayer]],
+    [[".mp3"],[MusicPlayer]],
 ]
 
 const fileTypesSuffix:{[suffix:string]:ViewComponent[]} = {}
@@ -41,7 +43,7 @@ for (const ar of fileTypesSuffixConfig) {
 export function getViewBySuffix(suffix: string):ViewComponent[] {
     const com = fileTypesSuffix[suffix.toLowerCase()];
     if(com){
-        return com
+        return [...com,GenericFileDown]
     }
     return [GenericFileDown];
 }

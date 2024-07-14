@@ -14,10 +14,10 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.14",
     "vue": "^3.4.31",
-    "vuepress": "2.0.0-rc.14"
-  },
-  "dependencies": {
+    "vuepress": "2.0.0-rc.14",
+    "aplayer": "^1.10.1",
     "artplayer": "^5.1.6",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
   }
 }

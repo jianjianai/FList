@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {FrontmatterFileData} from "../../../../type/index.js";
-import FileSvg from "../../../imgs/fileTypes/FileSvg.vue";
 import {fileSizeFormat} from "../../../js/fileSizeFormat.js";
 import {dateFormat} from "../../../js/dateFormat.js";
 import AButton from "../../buttons/AButton.vue";
 import {putNotification} from "../../../js/notification/notification.js";
+import FileTypeIcon from "../../FileTypeIcon.vue";
 
 const props = defineProps<{file:FrontmatterFileData}>()
 
@@ -17,7 +17,7 @@ function copyLink(){
 
 <template>
   <div class="down">
-    <FileSvg class="icon"></FileSvg>
+    <FileTypeIcon :fileName="props.file.name" :isFolder="false" class="icon"></FileTypeIcon>
     <div class="name">{{props.file.name}}</div>
     <div class="info">{{fileSizeFormat(props.file.size)}} {{dateFormat(props.file.updateTime)}}</div>
     <div class="buttons">

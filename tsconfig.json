@@ -5,6 +5,7 @@
     "target": "ESNext",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "types": ["vite/client","vuepress/client-types"]
   }
 }
