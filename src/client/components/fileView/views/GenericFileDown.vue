@@ -9,7 +9,7 @@ import FileTypeIcon from "../../FileTypeIcon.vue";
 const props = defineProps<{file:FrontmatterFileData}>()
 
 function copyLink(){
-  navigator.clipboard.writeText(props.file.url);
+  navigator.clipboard.writeText(new URL(props.file.url, window.location.origin).toString());
   putNotification({message: "链接已复制", type: "success"});
 }
 

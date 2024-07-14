@@ -1,22 +1,20 @@
 <script setup lang="ts">
 import { usePageFrontmatter } from 'vuepress/client';
-import {computed, ComputedRef} from "vue";
-import {FrontmatterChildrenFileData} from "../../type/index.js";
+import {FolderPageFrontmatter} from "../../type/index.js";
 import FilesPageMain from "../components/FilesPageMain.vue";
 import FButtonLink from "../components/FButtonLink.vue";
 import FileTypeIcon from "../components/FileTypeIcon.vue";
 import {dateFormat} from "../js/dateFormat.js";
 import {fileSizeFormat} from "../js/fileSizeFormat.js";
 
-const frontmatter = usePageFrontmatter();
-const children = computed(()=>frontmatter.value.children) as ComputedRef<FrontmatterChildrenFileData[]>;
+const frontmatter = usePageFrontmatter<FolderPageFrontmatter>();
 
 
 </script>
 
 <template>
   <FilesPageMain>
-    <template #default v-if="children && children.length>0">
+    <template #default v-if="frontmatter.children && frontmatter.children.length>0">
       <div class="files">
         <!--      表头-->
         <div class="th">
@@ -25,7 +23,7 @@ const children = computed(()=>frontmatter.value.children) as ComputedRef<Frontma
           <div class="t-up-item">更新时间</div>
         </div>
         <!--      行-->
-        <FButtonLink class="td" v-for="file of children" :to="`./${file.name}/`">
+        <FButtonLink class="td" v-for="file of frontmatter.children" :to="`./${file.name}/`">
           <div class="t-name">
             <FileTypeIcon class="file-icon" :isFolder="file.isFolder" :fileName="file.name" />
             <span class="file-name" :title="file.name">{{file.name}}</span>
