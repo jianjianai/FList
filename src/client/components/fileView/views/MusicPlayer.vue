@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import 'APlayer/dist/APlayer.min.css';
+import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
 import {FrontmatterFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted, ref} from "vue";
