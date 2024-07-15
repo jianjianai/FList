@@ -13,6 +13,9 @@ const viewComponents = computed<ViewComponent[]>(()=>{
   return getViewBySuffix(suffix);
 });
 const selectEd = ref(0);
+if(!__VUEPRESS_SSR__){
+  selectEd.value = viewComponents.value.length>1?1:0;
+}
 
 </script>
 
