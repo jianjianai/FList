@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {FrontmatterFileData} from "../../../type/index.js";
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import {getViewBySuffix, ViewComponent} from "./views/suffix.js";
 
 
@@ -13,9 +13,10 @@ const viewComponents = computed<ViewComponent[]>(()=>{
   return getViewBySuffix(suffix);
 });
 const selectEd = ref(0);
-if(!__VUEPRESS_SSR__){
+onMounted(()=>{
+  //客户端如果有多个视图组件，那么默认选择第一个
   selectEd.value = viewComponents.value.length>1?1:0;
-}
+})
 
 </script>
 
