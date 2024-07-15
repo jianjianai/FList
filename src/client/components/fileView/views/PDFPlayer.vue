@@ -38,7 +38,7 @@ onMounted( async ()=>{
   border: 0.1rem solid #e1e4e8;
   border-radius: 0.8rem;
   padding: 0.8rem 0;
-  height: 80vh;
+  height: 70vh;
 }
 .pdf{
   padding: 1rem 0;
