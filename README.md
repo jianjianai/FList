@@ -10,6 +10,16 @@
 ## 体验
 
 
+## 部署
+### Cloudflare Pages
+- Build command
+``` shell
+pnpm run build
+```
+- Build output directory
+``` shell
+.vuepress/dist
+```
 
 
 ## 鸣谢
