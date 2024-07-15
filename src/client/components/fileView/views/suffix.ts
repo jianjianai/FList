@@ -46,6 +46,10 @@ for (const ar of fileTypesSuffixConfig) {
 }
 
 export function getViewBySuffix(suffix: string):ViewComponent[] {
+    if(__VUEPRESS_SSR__){
+        // 服务端渲染只需要渲染下载组件，其他的可能会有问题
+        return [GenericFileDown];
+    }
     const com = fileTypesSuffix[suffix.toLowerCase()];
     if(com){
         return [...com,GenericFileDown]
