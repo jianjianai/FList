@@ -42,6 +42,9 @@ import CloseSvg from "../../imgs/ui/CloseSvg.vue";
 .icon-svg.success{
   color: #4c9c4c;
 }
+.icon-svg.error{
+  color: #ca1414;
+}
 .icon-svg{
   width: 1.6rem;
 }

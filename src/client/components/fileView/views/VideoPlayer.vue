@@ -2,9 +2,13 @@
 import Artplayer from "artplayer";
 import {FrontmatterFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted} from "vue";
+import {putNotification} from "../../../js/notification/notification.js";
+
 
 const props = defineProps<{file:FrontmatterFileData}>()
+
 let artPlayer:Artplayer|null = null;
+
 onMounted(()=>{
   artPlayer = new Artplayer({
     container: '.artplayer-app',
@@ -27,6 +31,11 @@ onMounted(()=>{
   });
   artPlayer.on('resize', () => {
     artPlayer?.autoHeight();
+  });
+  artPlayer.on('error', (error, reconnectTime) => {
+    if(reconnectTime>=5){
+      putNotification({message:"视频加载失败！",type:"error",time:10000});
+    }
   });
 })
 onUnmounted(()=>{

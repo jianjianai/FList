@@ -1,13 +1,16 @@
 import {reactive} from "vue";
 import CircleCheckSvg from "../../imgs/ui/CircleCheckSvg.vue";
+import CircleCloseOSvg from "../../imgs/ui/CircleCloseOSvg.vue";
 
 export class IconComponents {
     success = CircleCheckSvg;
+    error = CircleCloseOSvg
 }
 export type NotificationType = keyof IconComponents;
 export type Notification = {
     type: NotificationType;
     message: string;
+    time?:number
 }
 export const notifications = reactive<{
     [key:number]:{
@@ -26,7 +29,7 @@ export function putNotification(notification:Notification){
         notification:notification,
         setTimeoutId:setTimeout(()=>{
             delete notifications[thePutNotificationId];
-        },3000) as any
+        },notification.time || 3000) as any
     };
     return putNotificationId;
 }

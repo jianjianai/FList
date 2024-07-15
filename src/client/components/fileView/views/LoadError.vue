@@ -1,12 +1,13 @@
 <script setup lang="ts">
 
 import CircleCloseOSvg from "../../../imgs/ui/CircleCloseOSvg.vue";
+const props = defineProps<{message?:string}>();
 </script>
 
 <template>
   <div class="load-error">
     <CircleCloseOSvg class="icon"></CircleCloseOSvg>
-    <div class="title">组件加载失败,请尝试刷新页面。</div>
+    <div class="title">{{props.message || "组件加载失败,请尝试刷新页面。"}}</div>
   </div>
 </template>
 

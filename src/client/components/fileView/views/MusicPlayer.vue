@@ -4,11 +4,13 @@ import APlayer from 'aplayer';
 import {FrontmatterFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted, ref} from "vue";
 import coverUrl from "../../../imgs/ui/file-music-fill.svg?url";
+import {putNotification} from "../../../js/notification/notification.js";
 
 const props = defineProps<{file:FrontmatterFileData}>()
 
 const aplayerEl = ref<HTMLElement>()
 let aplayer:any = null;
+let unmounted = true;
 onMounted(()=>{
   aplayer = new APlayer({
     container: aplayerEl.value,
@@ -19,8 +21,14 @@ onMounted(()=>{
     }],
     theme: '#56ccff'
   });
+  aplayer.on('error', function () {
+    if(unmounted){
+      putNotification({message:"音频加载失败！",type:"error",time:10000});
+    }
+  });
 })
 onUnmounted(()=>{
+  unmounted = false;
   aplayer?.destroy()
 });
 

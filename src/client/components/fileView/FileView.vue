@@ -17,12 +17,12 @@ const selectEd = ref(0);
 </script>
 
 <template>
-  <ClientOnly>
+  <div>
     <select v-model="selectEd" v-if="viewComponents.length>1">
       <option v-for="(co,index) of viewComponents" :value="index">{{co.name}}</option>
     </select>
     <component :is="viewComponents[selectEd].component" :file="file"></component>
-  </ClientOnly>
+  </div>
 </template>
 
 <style scoped>
