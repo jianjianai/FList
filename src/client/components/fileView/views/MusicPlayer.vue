@@ -5,6 +5,8 @@ import {FrontmatterFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted, ref} from "vue";
 import coverUrl from "../../../imgs/ui/file-music-fill.svg?url";
 import {putNotification} from "../../../js/notification/notification.js";
+import {dateFormat} from "../../../js/dateFormat.js";
+import {fileSizeFormat} from "../../../js/fileSizeFormat.js";
 
 const props = defineProps<{file:FrontmatterFileData}>()
 
@@ -17,7 +19,8 @@ onMounted(()=>{
     audio: [{
       name: props.file.name,
       url: props.file.url,
-      cover: coverUrl
+      cover: coverUrl,
+      artist: dateFormat(props.file.updateTime)+" - "+fileSizeFormat(props.file.size),
     }],
     theme: '#56ccff'
   });
