@@ -49,7 +49,8 @@ function createFileTreePagesInner(app:App, path:string, folder:Folder):Promise<P
                 url:cFile.url,
                 size:cFile.size,
                 updateTime:cFile.updateTime,
-                name:childrenName
+                name:childrenName,
+                contentType:cFile.contentType
             },
         }
         pagePromiseList.push(createPage(app,{

@@ -23,5 +23,6 @@ export type FrontmatterFileData = {
     name:string,
     url:string,
     size:number,
-    updateTime:number
+    updateTime:number,
+    contentType?:string
 }

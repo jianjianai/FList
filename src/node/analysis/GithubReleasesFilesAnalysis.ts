@@ -27,13 +27,14 @@ async function githubReleasesFileTree({user,repository}:GithubRepository):Promis
             browser_download_url:string,
             name:string,
             updated_at:string,
-            size:number
+            size:number,
+            content_type:string
         }[]
     }[];
     for(const {tag_name,name,body,published_at,assets} of jsonData){
         const tagFolder:Folder = {title:name,content:body,children:{},updateTime:new Date(published_at).getTime(),size:0};
-        for(const {browser_download_url,size,name,updated_at} of assets){
-            addFileToFileTree(tagFolder,name,{url:browser_download_url,updateTime:new Date(updated_at).getTime(),size:size});
+        for(const {browser_download_url,size,name,updated_at,content_type} of assets){
+            addFileToFileTree(tagFolder,name,{url:browser_download_url,updateTime:new Date(updated_at).getTime(),size:size,contentType:content_type});
         }
         let tagPath:string = tag_name;
         if(tagPath=="root"){

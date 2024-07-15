@@ -2,7 +2,8 @@ import {DownProxy} from "../../base/AllAnalysis.js";
 import {writeFile} from "fs";
 import {path} from "vuepress/utils";
 import {downloadProxy} from "./worker/cloudflarePagesDownloadPorxy.js";
-import {onGenerated} from "../../base/eventManager.js";
+import {onExtendsBundlerOptions, onGenerated} from "../../base/eventManager.js";
+import {ProxyOptions} from "vite";
 
 
 /**
@@ -42,6 +43,26 @@ async function cloudflarePagesReleaseConfigurationFile(destPath:string){
  * 如果被引用了就注册生成配置文件的事件
  * */
 onGenerated(async (app)=>cloudflarePagesReleaseConfigurationFile(app.dir.dest()));
+/**
+ * 配置dev代理和cloudflare一样工作
+ * */
+onExtendsBundlerOptions(async (options,app)=>{
+    if (app.options.bundler.name === '@vuepress/bundler-vite') {
+        const proxy:Record<string, string | ProxyOptions> = {};
+        for (const proxyConfigKey in proxyConfig) {
+            const proxyConfigValue = proxyConfig[proxyConfigKey];
+            proxy[proxyConfigKey] = {
+                target: proxyConfigValue,
+                changeOrigin: true,
+                rewrite: () => "",
+                followRedirects: true,
+            };
+        }
+        options.viteOptions ??= {};
+        options.viteOptions.server ??= {};
+        options.viteOptions.server.proxy = {...options.viteOptions.server.proxy,...proxy};
+    }
+});
 
 async function cloudflarePagesDownProxyInner(sourceUrl:string):Promise<string>{
     const downProxyPath = `/down/${hashCode(sourceUrl)}/${sourceUrl.substring(sourceUrl.lastIndexOf("/")+1)}`;

@@ -2,6 +2,7 @@ export type File = {
     url:string,
     updateTime:number,
     size:number,
+    contentType?:string
 }
 export type Folder = {
     title?:string,
