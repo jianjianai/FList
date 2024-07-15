@@ -27,7 +27,7 @@ function getToPath(index: number) {
   <FButtonLink to="/">主页</FButtonLink>
   <template v-for="(file,index) of pathArray">
     <div>/</div>
-    <FButtonLink class="alink" :to="getToPath(index)">{{file}}</FButtonLink>
+    <FButtonLink class="alink" :to="getToPath(index)">{{decodeURI(file)}}</FButtonLink>
   </template>
 </div>
 </template>
