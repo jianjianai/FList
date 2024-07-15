@@ -21,9 +21,7 @@ onMounted(()=>{
   });
 })
 onUnmounted(()=>{
-  if(aplayer){
-    aplayer.destroy()
-  }
+  aplayer?.destroy()
 });
 
 

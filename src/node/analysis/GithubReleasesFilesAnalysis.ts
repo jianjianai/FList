@@ -12,7 +12,7 @@ export interface GithubRepository{
 /**
  * 从GitHub仓库的releases中解析文件信息
  * */
-export async function githubReleasesFileTree({user,repository}:GithubRepository):Promise<Folder>{
+async function githubReleasesFileTree({user,repository}:GithubRepository):Promise<Folder>{
     const fileTree:Folder = {children:{},size:0,updateTime:0};
     const tagInfo = await fetch(`https://api.github.com/repos/${user}/${repository}/releases`);
     if(!tagInfo.ok){
@@ -49,4 +49,12 @@ export async function githubReleasesFileTree({user,repository}:GithubRepository)
         }
     }
     return fileTree;
+}
+
+
+/**
+ * 从GitHub仓库的releases中解析文件信息
+ * */
+export function githubReleasesFilesAnalysis(config:GithubRepository){
+    return ()=>githubReleasesFileTree(config);
 }

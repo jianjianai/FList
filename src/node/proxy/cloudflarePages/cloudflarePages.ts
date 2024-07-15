@@ -1,10 +1,13 @@
-import {DownProxy} from "../../analysis/AllAnalysis.js";
+import {DownProxy} from "../../base/AllAnalysis.js";
 import {writeFile} from "fs";
 import {path} from "vuepress/utils";
 import {downloadProxy} from "./worker/cloudflarePagesDownloadPorxy.js";
+import {onGenerated} from "../../base/eventManager.js";
 
 
-
+/**
+ * 生成一个字符串的hashcode
+ * */
 function hashCode(string:string):number {
     let hash = 0, i, chr;
     if (string.length === 0) return hash;
@@ -30,7 +33,17 @@ export function getDownProxyRoutes(){
     };
 }
 
-export const cloudflarePagesDownProxy:DownProxy = async (sourceUrl:string):Promise<string>=>{
+async function cloudflarePagesReleaseConfigurationFile(destPath:string){
+    await new Promise((r)=>writeFile(path.join(destPath,"_routes.json"),JSON.stringify(getDownProxyRoutes()),r));
+    await new Promise((r)=>writeFile(path.join(destPath,"_worker.js"),`${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default {fetch:(req)=>downloadProxy(req,proxyConfig)};`,r));
+}
+
+/**
+ * 如果被引用了就注册生成配置文件的事件
+ * */
+onGenerated(async (app)=>cloudflarePagesReleaseConfigurationFile(app.dir.dest()));
+
+async function cloudflarePagesDownProxyInner(sourceUrl:string):Promise<string>{
     const downProxyPath = `/down/${hashCode(sourceUrl)}/${sourceUrl.substring(sourceUrl.lastIndexOf("/")+1)}`;
     const routerPath = `/down/${hashCode(sourceUrl)}/*`;
     proxyConfig[downProxyPath] = sourceUrl;
@@ -38,7 +51,14 @@ export const cloudflarePagesDownProxy:DownProxy = async (sourceUrl:string):Promi
     return downProxyPath;
 }
 
-export async function cloudflarePagesReleaseConfigurationFile(destPath:string){
-    await new Promise((r)=>writeFile(path.join(destPath,"_routes.json"),JSON.stringify(getDownProxyRoutes()),r));
-    await new Promise((r)=>writeFile(path.join(destPath,"_worker.js"),`${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default {fetch:(req)=>downloadProxy(req,proxyConfig)};`,r));
+
+/**
+ * 使用cloudflare pages的下载代理
+ * */
+export function cloudflarePagesDownProxy():DownProxy{
+    return (sourceUrl)=>cloudflarePagesDownProxyInner(sourceUrl);
 }
+
+
+
+

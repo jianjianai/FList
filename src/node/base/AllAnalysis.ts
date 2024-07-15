@@ -1,34 +1,23 @@
-import {githubReleasesFileTree, GithubRepository} from "./GithubReleasesFilesAnalysis.js";
-import {abFolders, addFileToFileTree, deepGetAllFile, Folder} from "../base/files.js";
+import {abFolders, addFileToFileTree, deepGetAllFile, Folder} from "./files.js";
 
 
 export type DownProxy = (sourceUrl:string)=>Promise<string>;
-
-interface AnalysisConfigBase{
+export type Analysis = ()=>Promise<Folder>;
+export interface AnalysisConfig{
     /**一个函数,接收源url,返回下载url*/
     downProxy?:DownProxy,
     /**挂载路径*/
     mountPath?:string,
+    /**驱动*/
+    analysis:Analysis
 }
-export type AnalysisConfig = AnalysisConfigBase & (
-    { type:"githubReleases", config:GithubRepository }
-);
 
-/**
- * 从配置文件加载文件树
- * */
-async function analysis(config:AnalysisConfig):Promise<Folder>{
-    switch (config.type) {
-        case "githubReleases":
-            return githubReleasesFileTree(config.config);
-    }
-}
 
 /**
  *  加载配置文件并执行代理
  * */
 async function analysisAndDownProxy(config:AnalysisConfig):Promise<Folder>{
-    const folder:Folder = await analysis(config);
+    const folder:Folder = await config.analysis();
     if(!config.downProxy){
         return folder;
     }

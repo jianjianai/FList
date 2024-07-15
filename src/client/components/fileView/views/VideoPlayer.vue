@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import Artplayer from "artplayer";
 import {FrontmatterFileData} from "../../../../type/index.js";
-import {onMounted} from "vue";
+import {onMounted, onUnmounted} from "vue";
 
 const props = defineProps<{file:FrontmatterFileData}>()
+let artPlayer:Artplayer|null = null;
 onMounted(()=>{
-  const art = new Artplayer({
+  artPlayer = new Artplayer({
     container: '.artplayer-app',
     url: props.file.url,
     lang: navigator.language.toLowerCase(),
@@ -21,12 +22,15 @@ onMounted(()=>{
     subtitleOffset:true,
     fastForward:true,
   });
-  art.on('ready', () => {
-    art.autoHeight();
+  artPlayer.on('ready', () => {
+    artPlayer?.autoHeight();
   });
-  art.on('resize', () => {
-    art.autoHeight();
+  artPlayer.on('resize', () => {
+    artPlayer?.autoHeight();
   });
+})
+onUnmounted(()=>{
+  artPlayer?.destroy();
 })
 
 </script>
