@@ -1,27 +1,23 @@
 <script setup lang="ts">
 import {FrontmatterFileData} from "../../../../type/index.js";
-import markdownit from 'markdown-it'
 import {onMounted, ref} from "vue";
 import {putNotification} from "../../../js/notification/notification.js";
 import Loading from "./Loading.vue";
 import LoadError from "./LoadError.vue";
-
 const props = defineProps<{file:FrontmatterFileData}>()
-const markdown = markdownit();
 
 const loading = ref(true);
 const loadError = ref(false);
-const innerHTML = ref<string>();
+const innerText = ref<string>();
 onMounted( async ()=>{
   try{
     const res = await fetch(props.file.url);
     if(!res.ok){
-      putNotification({message:"加载 markdown 文件失败!",type:"error",time:10000});
+      putNotification({message:"加载 文本 文件失败!",type:"error",time:10000});
     }
-    const text = await res.text();
-    innerHTML.value = markdown.render(text);
+    innerText.value = await res.text();
   }catch (e){
-    putNotification({message:"加载 markdown 文件失败!",type:"error",time:10000});
+    putNotification({message:"加载 文本 文件失败!",type:"error",time:10000});
     loadError.value = true;
   }
   loading.value = false;
@@ -30,16 +26,14 @@ onMounted( async ()=>{
 </script>
 
 <template>
-<div class="markdown">
-  <LoadError v-if="loadError" message="加载 markdown 文件失败!"></LoadError>
-  <Loading v-else-if="loading"></Loading>
-  <template v-else>
-    <div class="title">{{props.file.name}}</div>
-    <div class="body">
-      <div class="markdown-body" v-html="innerHTML"></div>
-    </div>
-  </template>
-</div>
+  <div class="pre-text">
+    <LoadError v-if="loadError" message="加载 文本 文件失败!"></LoadError>
+    <Loading v-else-if="loading"></Loading>
+    <template v-else>
+      <div class="title">{{props.file.name}}</div>
+      <pre class="body">{{innerText}}</pre>
+    </template>
+  </div>
 </template>
 
 <style scoped>
@@ -58,9 +52,11 @@ onMounted( async ()=>{
   border-radius: 0 0 0.8rem 0.8rem;
   padding: 1rem;
   width: calc(100% - 2rem);
-  overflow-x: hidden;
+  max-height: 70vh;
+  margin: 0;
+  overflow: auto;
 }
-.markdown{
+.pre-text{
   padding: 1rem 0;
 }
 </style>

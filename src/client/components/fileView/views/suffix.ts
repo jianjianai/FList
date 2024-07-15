@@ -2,8 +2,6 @@ import {type Component, defineAsyncComponent} from "vue";
 import {FrontmatterFileData} from "../../../../type/index.js";
 import LoadError from "./LoadError.vue";
 import Loading from "./Loading.vue";
-import FileImageO from "../../../imgs/fileTypes/FileImageO.vue";
-
 export type ViewComponent = {
     component:Component<{file:FrontmatterFileData}>,
     name:string
@@ -25,12 +23,14 @@ const MusicPlayer = defineViewComponent("音乐播放",()=>import("./MusicPlayer
 const MarkdownPlayer = defineViewComponent("Markdown预览",()=>import("./MarkdownPlayer.vue"));
 const ImgPlayer = defineViewComponent("图片预览",()=>import("./ImgPlayer.vue"));
 const PDFPlayer = defineViewComponent("PDF预览",()=>import("./PDFPlayer.vue"));
+const PreTextPlayer = defineViewComponent("文本预览",()=>import("./PreTextPlayer.vue"));
 const fileTypesSuffixConfig:[string[],ViewComponent[]][] = [
     [[".mp4",".mkv",".webm",".m3u8",".ts",".avi",".mov",".wmv",".flv"],[VideoPlayer]],
     [[".mp3",".flac",".wav"],[MusicPlayer]],
     [[".md"],[MarkdownPlayer]],
     [[".jpg",".jpeg",".png",".gif",".bmp",".webp",".svg",".ico",".tiff",],[ImgPlayer]],
     [[".pdf"],[PDFPlayer]],
+    [[".txt",".text",".md"],[PreTextPlayer]],
 ]
 
 const fileTypesSuffix:{[suffix:string]:ViewComponent[]} = {}
