@@ -21,7 +21,7 @@ function hashCode(string:string):number {
 }
 
 
-const includes:string[] = [];
+const includes = "/down/"+Math.random().toString(36).substring(2)+"/";
 const proxyConfig:{[path:string]:string} = {}
 /**
  * 代理这些文件的下载并生成下载允许的路由列表
@@ -29,7 +29,7 @@ const proxyConfig:{[path:string]:string} = {}
 export function getDownProxyRoutes(){
     return {
         "version": 1,
-        "include": includes,
+        "include": [includes+"**"],
         "exclude": []
     };
 }
@@ -65,10 +65,8 @@ onExtendsBundlerOptions(async (options,app)=>{
 });
 
 async function cloudflarePagesDownProxyInner(sourceUrl:string):Promise<string>{
-    const downProxyPath = `/down/${hashCode(sourceUrl)}/${sourceUrl.substring(sourceUrl.lastIndexOf("/")+1)}`;
-    const routerPath = `/down/${hashCode(sourceUrl)}/*`;
+    const downProxyPath = includes+`${hashCode(sourceUrl)}/${sourceUrl.substring(sourceUrl.lastIndexOf("/")+1)}`;
     proxyConfig[downProxyPath] = sourceUrl;
-    includes.push(routerPath);
     return downProxyPath;
 }
 
