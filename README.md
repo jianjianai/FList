@@ -8,8 +8,20 @@
 - **开箱即用**：只需简单配置，即可开箱即用，无需繁琐操作。
 
 ## 体验
+### 演示站
+- https://flistd.pages.dev/
+- https://demo.flist.jjaw.cn/
 
-
+## 部署
+### Cloudflare Pages
+- Build command
+``` shell
+pnpm run build
+```
+- Build output directory
+``` shell
+.vuepress/dist
+```
 
 
 ## 鸣谢
