@@ -24,11 +24,13 @@ const VideoPlayer = defineViewComponent("视频播放",()=>import("./VideoPlayer
 const MusicPlayer = defineViewComponent("音乐播放",()=>import("./MusicPlayer.vue"));
 const MarkdownPlayer = defineViewComponent("Markdown预览",()=>import("./MarkdownPlayer.vue"));
 const ImgPlayer = defineViewComponent("图片预览",()=>import("./ImgPlayer.vue"));
+const PDFPlayer = defineViewComponent("PDF预览",()=>import("./PDFPlayer.vue"));
 const fileTypesSuffixConfig:[string[],ViewComponent[]][] = [
     [[".mp4",".mkv",".webm",".m3u8",".ts",".avi",".mov",".wmv",".flv"],[VideoPlayer]],
     [[".mp3",".flac",".wav"],[MusicPlayer]],
     [[".md"],[MarkdownPlayer]],
-    [[".jpg",".jpeg",".png",".gif",".bmp",".webp",".svg",".ico",".tiff",],[ImgPlayer]]
+    [[".jpg",".jpeg",".png",".gif",".bmp",".webp",".svg",".ico",".tiff",],[ImgPlayer]],
+    [[".pdf"],[PDFPlayer]],
 ]
 
 const fileTypesSuffix:{[suffix:string]:ViewComponent[]} = {}

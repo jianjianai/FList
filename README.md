@@ -7,5 +7,6 @@
 - [ArtPlayer](https://github.com/zhw2590582/ArtPlayer) -- 一款基于 `HTML5` 的视频播放器
 - [APlayer](https://github.com/DIYgod/APlayer) -- 一款开源的音乐播放器
 - [v-viewer](https://github.com/mirari/v-viewer) -- `Vue3` 图片浏览组件
+- [pdf-vue3](https://github.com/hymhub/pdf-vue3) -- `Vue3` PDF 组件
 - [iconshock](https://www.iconshock.com/) -- 图标库
 - [@vuepress/plugin-nprogress](https://www.npmjs.com/package/@vuepress/plugin-nprogress) -- 在切换到另一个页面时会展示进度条。

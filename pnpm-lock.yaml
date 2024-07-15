@@ -26,6 +26,9 @@ importers:
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
+      pdf-vue3:
+        specifier: ^1.0.12
+        version: 1.0.12
       typescript:
         specifier: ^5.5.3
         version: 5.5.3
@@ -712,6 +715,9 @@ packages:
   path-type@5.0.0:
     resolution: {integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg==}
     engines: {node: '>=12'}
+
+  pdf-vue3@1.0.12:
+    resolution: {integrity: sha512-7SMTx1RfRwdc+2WPniDzqM8MxJLqTNNzdyV0SeQTxeRLJGndb5Wv/fz5afO13oBSIvvaqcbZ/S3gF+XjqkSb9g==}
 
   picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
@@ -1602,6 +1608,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   path-type@5.0.0: {}
+
+  pdf-vue3@1.0.12: {}
 
   picocolors@1.0.1: {}
 
