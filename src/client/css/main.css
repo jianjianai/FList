@@ -1,4 +1,5 @@
 @import "./github-markdown.css";
+@import "./plugin-nprogress.css";
 
 html,body,#app{
     margin:0;
