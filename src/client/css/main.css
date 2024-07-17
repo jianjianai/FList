@@ -2,6 +2,9 @@
 @import "./plugin-nprogress.css";
 
 :root{
+    /**图标颜色*/
+    --logo-color: #00b3ff;
+
     /**主题颜色的定义*/
     --t-color-1:#00b2ff;
 

@@ -5,6 +5,7 @@ import Folder from "./layouts/Folder.vue";
 import File from "./layouts/File.vue";
 import "./css/main.css"
 
+console.log("欢迎使用 FList");
 export default defineClientConfig({
     enhance({ app, router, siteData }) {},
     setup() {},
