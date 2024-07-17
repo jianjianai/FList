@@ -25,7 +25,7 @@ svg {
 
 circle {
   fill: none;
-  stroke: var(--logo-c);
+  stroke: var(--t-color-1);
   stroke-width: 4;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;

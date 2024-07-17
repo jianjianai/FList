@@ -21,18 +21,13 @@ function copyLink(){
     <div class="name">{{props.file.name}}</div>
     <div class="info">{{fileSizeFormat(props.file.size)}} {{dateFormat(props.file.updateTime)}}</div>
     <div class="buttons">
-      <AButton class="copy-down" @click="copyLink()">复制链接</AButton>
+      <AButton class="button-color-grep1" @click="copyLink()">复制链接</AButton>
       <AButton target="_blank" :href="props.file.url">下载</AButton>
     </div>
   </div>
 </template>
 
 <style scoped>
-.copy-down{
-  --a-button-bg: #eee9ff;
-  --a-button-bg-h: #e5daff;
-  --a-button-c: #ca6cff;
-}
 .buttons{
   display: flex;
   align-items: center;
@@ -43,7 +38,7 @@ function copyLink(){
 .info{
   margin-top: 0.8rem;
   font-size: 0.8rem;
-  color: var(--color-op1);
+  color: var(--f-color-2);
 }
 .name{
   font-weight: bolder;
@@ -55,7 +50,7 @@ function copyLink(){
 }
 .icon{
   width: 5rem;
-  color: var(--logo-c);
+  color: var(--t-color-1);
 }
 .down{
   display: flex;

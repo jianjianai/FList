@@ -38,17 +38,17 @@ onMounted( async ()=>{
 
 <style scoped>
 .title{
-  border: 0.1rem solid #e1e4e8;
+  border: var(--pre-text-player-border);
   border-bottom: none;
   border-radius: 0.8rem 0.8rem 0 0;
   width: calc(100% - 2rem);
   padding: 0.5rem 1rem;
-  background-color: #f0f2f4;
+  background-color: var(--pre-text-player-title-bgc);
   font-size: 0.9rem;
   font-weight: bolder;
 }
 .body{
-  border: 0.1rem solid #e1e4e8;
+  border: var(--pre-text-player-border);
   border-radius: 0 0 0.8rem 0.8rem;
   padding: 1rem;
   width: calc(100% - 2rem);

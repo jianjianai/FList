@@ -37,6 +37,15 @@ const frontmatter = usePageFrontmatter<FolderPageFrontmatter>();
 </template>
 
 <style scoped>
+.th .t-name,.th .t-size,.th .t-up-item{
+  font-weight: bold;
+  color: var(--f-color-1);
+}
+
+.td .t-size,.td .t-up-item{
+  font-size: 0.9rem;
+}
+
 .file-name{
   white-space: nowrap; /* 禁止换行 */
   overflow: hidden; /* 隐藏溢出内容 */
@@ -65,7 +74,7 @@ const frontmatter = usePageFrontmatter<FolderPageFrontmatter>();
 .file-icon{
   font-size: 1.5rem;
   flex-shrink: 0;
-  color: var(--logo-c);
+  color: var(--t-color-1);
 }
 .t-size{
   text-align: right;

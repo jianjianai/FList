@@ -1,6 +1,84 @@
 @import "./github-markdown.css";
 @import "./plugin-nprogress.css";
 
+:root{
+    /**主题颜色的定义*/
+    --t-color-1:#00b2ff;
+
+    /** 字体颜色的一些定义 */
+    --f-color-0: rgba(0, 0, 0, 1);
+    --f-color-1: rgba(0, 0, 0, 0.6);
+    --f-color-2: rgba(0, 0, 0, 0.3);
+
+    /** 布局主要颜色 */
+    --page-bgc: #f7f8fa;
+    --mian-box-bgc: #ffffff;
+    --mian-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.09), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /*如果需要hover可点击提示颜色*/
+    --main-hover-bg:rgba(132, 133, 141, 0.18);
+    /*如果需要框的颜色*/
+    --main-border-c:#e1e4e8;
+
+    /**提示功能颜色*/
+    --tip-color-error: #ca1414;
+    --tip-color-success: #4c9c4c;
+    --tip-color-warning: #f0ad4e;
+    --tip-color-info: #5bc0de;
+}
+
+/**---------------通知相关 Notification.vue--------------------*/
+:root{
+    /** 通知的颜色 */
+    --notification-bgc: var(--mian-box-bgc);
+    --notification-shadow: var(--mian-box-shadow);
+    --notification-bg-close-h: var(--main-hover-bg)
+}
+
+
+/**---------------按钮相关 FButtonLink.vue--------------------*/
+:root{
+    /** 按钮的颜色 */
+    --a-button-bg: #e2f4ff;
+    --a-button-bg-h: #c5e2f3;
+    --a-button-c: #0092ff;
+    --a-button-bg-hover:var(--main-hover-bg)
+}
+.button-color-grep1{
+    /*按钮主题颜色2*/
+    --a-button-bg: #eee9ff;
+    --a-button-bg-h: #e5daff;
+    --a-button-c: #ca6cff;
+}
+
+/**---------------MarkdownPlayer.vue--------------------*/
+:root{
+    --markdown-player-border: 0.1rem solid var(--main-border-c);
+    --markdown-player-title-bgc: #f0f2f4;
+}
+
+/**---------------PDFPlayer.vue--------------------*/
+:root{
+    --pdf-player-border: 0.1rem solid var(--main-border-c);
+}
+
+/**---------------PreTextPlayer.vue--------------------*/
+:root{
+    --pre-text-player-border: 0.1rem solid var(--main-border-c);
+    --pre-text-player-title-bgc: #f0f2f4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 html,body,#app{
     margin:0;
     border:0;
@@ -12,20 +90,5 @@ html,body,#app{
 }
 :root{
     font-size: 16px;
-    --color:black;
-    color:var(--color);
-    --color-op1: rgba(0, 0, 0, 0.6);
-}
-:root{
-    --page-bgc: #f7f8fa;
-    --mian-box-bgc: white;
-    --mian-box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.09), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --logo-c:#00b2ff;
-    --a-button-bg: #e2f4ff;
-    --a-button-bg-h: #c5e2f3;
-    --a-button-c: #0092ff;
-    --notification-bgc: var(--mian-box-bgc);
-    --notification-shadow: var(--mian-box-shadow);
-    --buttonLink-bg-h:rgba(132, 133, 141, 0.18);
-    --notification-bg-close-h:var(--buttonLink-bg-h);
+    color:var(--f-color-0);
 }

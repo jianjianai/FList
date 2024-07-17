@@ -16,7 +16,7 @@ const props = defineProps<{message?:string}>();
   font-size: 1.1rem;
 }
 .icon{
-  color: red;
+  color: var(--tip-color-error);
   width: 4rem;
   height: 4rem;
 }

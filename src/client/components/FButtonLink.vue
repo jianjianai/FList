@@ -24,7 +24,7 @@ function isUrl(url: string){
 <style scoped>
 .flink:hover{
   transform: scale(1.01);
-  background-color: var(--buttonLink-bg-h);
+  background-color: var(--a-button-bg-hover);
 }
 .flink{
   text-decoration: none;
@@ -32,6 +32,6 @@ function isUrl(url: string){
   border-radius: 0.4rem;
   padding: 0.4rem;
   transition: background-color 0.25s,transform 0.25s;
-  color: var(--color);
+  color: var(--f-color-0);
 }
 </style>

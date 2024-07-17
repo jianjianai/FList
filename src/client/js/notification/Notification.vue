@@ -40,10 +40,10 @@ import CloseSvg from "../../imgs/ui/CloseSvg.vue";
   align-items: flex-start;
 }
 .icon-svg.success{
-  color: #4c9c4c;
+  color: var(--tip-color-success);
 }
 .icon-svg.error{
-  color: #ca1414;
+  color: var(--tip-color-error);
 }
 .icon-svg{
   width: 1.6rem;
