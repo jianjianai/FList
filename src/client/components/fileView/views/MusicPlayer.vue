@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted, ref} from "vue";
 import coverUrl from "../../../imgs/ui/file-music-fill.svg?url";
 import {putNotification} from "../../../js/notification/notification.js";
 import {dateFormat} from "../../../js/dateFormat.js";
 import {fileSizeFormat} from "../../../js/fileSizeFormat.js";
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 
 const aplayerEl = ref<HTMLElement>()
 let aplayer:any = null;

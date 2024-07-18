@@ -1,9 +1,9 @@
 import {type Component, defineAsyncComponent} from "vue";
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import LoadError from "./LoadError.vue";
 import Loading from "./Loading.vue";
 export type ViewComponent = {
-    component:Component<{file:FrontmatterFileData}>,
+    component:Component<{file:PageFileData}>,
     name:string
 };
 

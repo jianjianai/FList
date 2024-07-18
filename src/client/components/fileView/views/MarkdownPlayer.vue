@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import markdownit from 'markdown-it'
 import {onMounted, ref} from "vue";
 import {putNotification} from "../../../js/notification/notification.js";
 import Loading from "./Loading.vue";
 import LoadError from "./LoadError.vue";
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 const markdown = markdownit();
 
 const loading = ref(true);

@@ -2,7 +2,10 @@
 /**
  * 将时间格式化为 yyyy-mm-dd hh:mm
  * */
-export function dateFormat(dateNumber: number): string {
+export function dateFormat(dateNumber: number|undefined): string {
+    if(dateNumber === undefined){
+        return '未知';
+    }
     const date = new Date(dateNumber);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');

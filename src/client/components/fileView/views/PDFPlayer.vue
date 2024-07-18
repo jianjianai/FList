@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import PDF from "pdf-vue3";
 import {onMounted, ref} from "vue";
 import Loading from "./Loading.vue";
 import LoadError from "./LoadError.vue";
 import {putNotification} from "../../../js/notification/notification.js";
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 const pdfData = ref<Uint8Array>();
 const pdfLoadError = ref(false)
 onMounted( async ()=>{

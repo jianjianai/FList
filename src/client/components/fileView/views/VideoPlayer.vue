@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Artplayer from "artplayer";
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import {onMounted, onUnmounted} from "vue";
 import {putNotification} from "../../../js/notification/notification.js";
 
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 
 let artPlayer:Artplayer|null = null;
 

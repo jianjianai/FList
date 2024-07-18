@@ -2,7 +2,10 @@
 /**
  * 将文件大小格式化为 B KB MB GB TB 单位显示
  * */
-export function fileSizeFormat(size: number): string {
+export function fileSizeFormat(size: number|undefined): string {
+  if(size === undefined){
+    return '未知';
+  }
   if (size < 1024) {
     return size + 'B';
   } else if (size < 1024 * 1024) {

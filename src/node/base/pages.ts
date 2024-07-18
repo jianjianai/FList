@@ -1,62 +1,95 @@
 import {
     FilePageFrontmatter,
     FolderPageFrontmatter,
-    FrontmatterChildrenFileData
+    PageFileData,
+    PageFilesInfo,
+    PageFolderDataNoChildrenData,
 } from "../../type/index.js";
 import {App, createPage, Page} from "vuepress";
-import {Folder, isFile,File} from "./files.js";
+import {File, Folder, isFile} from "./files.js";
+
+
+/**
+ * 给文件创建页面
+ * */
+export function createFilePage(app:App,path:string,file:File):Promise<Page>{
+    const frontmatter:FilePageFrontmatter = {
+        layout: 'File',
+        title: file.name,
+        hasContent: !!file.content,
+        file:{
+            name:file.name,
+            updateTime:file.updateTime,
+            size:file.size,
+
+            url:file.url,
+            contentType:file.contentType,
+        },
+    }
+    console.log(path,123456)
+    return createPage(app,{
+        path:path,
+        frontmatter:frontmatter,
+        content: file.content,
+    })
+}
+
+/**
+ * 给文件夹创建页面
+ * */
+export function createFolderPage(app:App,path:string,folder:Folder):Promise<Page>{
+    const childrenData = folder.children.map((children):PageFileData|PageFolderDataNoChildrenData=>{
+        const base:PageFilesInfo = {
+            name:children.name,
+            size:children.size,
+            updateTime:children.updateTime,
+        }
+        if(isFile(children)){
+            return {
+                ...base,
+                url: (children as File).url,
+                contentType: (children as File).contentType
+            }
+        }
+        return {
+            ...base,
+            isFolder:true
+        }
+    })
+    const frontmatter:FolderPageFrontmatter = {
+        layout: 'Folder',
+        title: folder.title,
+        hasContent : !!folder.content,
+        content: folder.content,
+        folder: {
+            name:folder.name,
+            size:folder.size,
+            updateTime:folder.updateTime,
+            children:childrenData,
+            isFolder:true
+        },
+    }
+    console.log(path,123456)
+    return createPage(app,{
+        path:path,
+        frontmatter:frontmatter,
+        content: folder.content,
+    })
+}
+
 
 function createFileTreePagesInner(app:App, path:string, folder:Folder):Promise<Page>[]{
     const pagePromiseList:Promise<Page>[] = [];
-    //给自己创建页面
-    const childrenData:FrontmatterChildrenFileData[] = [];
-    for (let childrenKey in folder.children) {
-        const children = folder.children[childrenKey];
-        childrenData.push({
-            name:childrenKey,
-            size:children.size,
-            updateTime:children.updateTime,
-            isFolder:!isFile(children)
-        });
-    }
-    console.log(path+"/",85748);
-    const folderfrontmatter:FolderPageFrontmatter = {
-        layout: 'Folder',
-        children: childrenData,
-        title: folder.title,
-        hasContent : !!folder.content,
-    }
-    pagePromiseList.push(createPage(app,{
-        path: path+"/",
-        frontmatter:folderfrontmatter,
-        content:folder.content,
-    }));
+    pagePromiseList.push(createFolderPage(app,path+"/",folder));
     //给子文件夹和文件创建页面
-    for (let childrenName in folder.children) {
-        const childrenNameFile = folder.children[childrenName];
+    for (let children of folder.children) {
         //如果是文件夹则递归
-        if(!isFile(childrenNameFile)){
-            pagePromiseList.push(...createFileTreePagesInner(app,path+"/"+childrenName,childrenNameFile as Folder))
+        if(!isFile(children)){
+            pagePromiseList.push(...createFileTreePagesInner(app,path+"/"+children.name,children as Folder))
             continue;
         }
         //如果是文件则给文件创建
-        const cFile:File = childrenNameFile as File;
-        console.log(path+"/"+childrenName+"/",84765);
-        const filefrontmatter:FilePageFrontmatter = {
-            layout: 'File',
-            title: childrenName,
-            file:{
-                url:cFile.url,
-                size:cFile.size,
-                updateTime:cFile.updateTime,
-                name:childrenName,
-                contentType:cFile.contentType
-            },
-        }
-        pagePromiseList.push(createPage(app,{
-            path:path+"/"+childrenName+"/",
-            frontmatter:filefrontmatter
-        }));
+        pagePromiseList.push(createFilePage(app,path+"/"+children.name+"/",children as File));
     }
     return pagePromiseList;
 }

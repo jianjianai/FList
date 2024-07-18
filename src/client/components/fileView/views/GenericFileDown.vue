@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import {fileSizeFormat} from "../../../js/fileSizeFormat.js";
 import {dateFormat} from "../../../js/dateFormat.js";
 import AButton from "../../buttons/AButton.vue";
 import {putNotification} from "../../../js/notification/notification.js";
 import FileTypeIcon from "../../FileTypeIcon.vue";
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 
 function copyLink(){
   navigator.clipboard.writeText(new URL(props.file.url, window.location.origin).toString());

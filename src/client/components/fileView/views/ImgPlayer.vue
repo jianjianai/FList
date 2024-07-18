@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {FrontmatterFileData} from "../../../../type/index.js";
+import {PageFileData} from "../../../../type/index.js";
 import 'viewerjs/dist/viewer.css'
 import { component as Viewer } from "v-viewer"
 import {putNotification} from "../../../js/notification/notification.js";
 
-const props = defineProps<{file:FrontmatterFileData}>()
+const props = defineProps<{file:PageFileData}>()
 const options = {
   "inline": true,
   "button": true,

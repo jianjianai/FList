@@ -1,4 +1,4 @@
-import {abFolders, addFileToFileTree, deepGetAllFile, Folder} from "./files.js";
+import {abFolders, addFileToFileTree, deepGetAllFile, Folder, reCalcFolder} from "./files.js";
 
 
 export type DownProxy = (sourceUrl:string)=>Promise<string>;
@@ -31,7 +31,7 @@ async function analysisAndDownProxy(config:AnalysisConfig):Promise<Folder>{
  * 从配置文件加载文件树
  * */
 export async function allAnalysis(config:AnalysisConfig[]):Promise<Folder>{
-    const rootFolder:Folder = {children:{},size:0,updateTime:0};
+    const rootFolder:Folder = {children:[],name:"defaultRoot"};
     for (let configElement of config) {
         const f = await analysisAndDownProxy(configElement);
         let mountPath = configElement.mountPath || "";
@@ -42,10 +42,14 @@ export async function allAnalysis(config:AnalysisConfig[]):Promise<Folder>{
             mountPath = mountPath.substring(0,mountPath.length-1);
         }
         if(mountPath) {
-            addFileToFileTree(rootFolder, mountPath, f);
+            const pathArray = mountPath.split("/");
+            f.name = pathArray.pop()!;
+            addFileToFileTree(rootFolder, pathArray, f);
         }else {
             abFolders(rootFolder, f);
         }
     }
+    // 最后计算文件夹的大小和更新时间
+    reCalcFolder(rootFolder);
     return rootFolder;
 }
