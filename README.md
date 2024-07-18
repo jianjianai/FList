@@ -59,6 +59,7 @@ export default defineUserConfig({
 <details>
 <summary>展开查看</summary>
 
+##### 基础
 将 ```jianjianai``` 的 ```FList``` 仓库挂载到根目录 ```/``` 下
 
 - mountPath: 挂载路径,就是将文件源中的文件放到什么路径下
@@ -69,8 +70,10 @@ export default defineUserConfig({
   analysis:githubReleasesFilesAnalysis({user:"jianjianai", repository:"FList"})
 }
 ```
-这样就把 ```jianjianai``` 的 ```FList``` 仓库挂载到了根目录 ```/``` 下了。但是如果直接从GitHub下载速度可能不佳。
-并且由于跨域的原因，PDF，TXT，这些文件无法预览，只能下载。（视频图片音频可以预览）。建议配置下载代理。
+这样就把 ```jianjianai``` 的 ```FList``` 仓库挂载到了根目录 ```/``` 下了。
+
+##### 配置代理
+如果直接从GitHub下载速度可能不佳。 并且由于跨域的原因，PDF，TXT，这些文件无法预览，只能下载。（视频图片音频可以预览）。建议配置下载代理。
 
 如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
 并且在开发阶段也有很好的预览体验。
@@ -83,6 +86,19 @@ export default defineUserConfig({
   downProxy:cloudflarePagesDownProxy(),
 }
 ```
+
+##### githubReleasesFilesAnalysis 特性
+```githubReleasesFilesAnalysis``` 会将  ```GitHub Releases``` 
+中的每个标签解析为一个目录，标签下发行的文件放到这个目录中。例如:
+- ```v1.0``` -> ```/v1.0```
+- ```v1.1``` -> ```/v1.1```
+
+如果想要将文件放到```/```下可以将标签名称命名为 ```root```,在 ```root``` 标签下的文件会被放到 ```/``` 下。
+
+
+如果想要将文件放到更深的目录下，则可以在标签中使用```/```。例如
+- ```v1.0/test``` -> ```/v1.0/test```
+- ```test/test2``` -> ```/test/test2```
 
 </details>
 
