@@ -21,9 +21,10 @@ async function analysisAndDownProxy(config:AnalysisConfig):Promise<Folder>{
     if(!config.downProxy){
         return folder;
     }
-    const downProxy = config.downProxy;
-    const allFile = deepGetAllFile(folder).map(async (file) => file.url = await downProxy(file.url));
-    await Promise.all(allFile);
+    const allFile = deepGetAllFile(folder);
+    for (let file of allFile) {
+        file.url = await config.downProxy(file.url)
+    }
     return folder;
 }
 
