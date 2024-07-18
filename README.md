@@ -41,12 +41,16 @@ pnpm run build
 
 ***注意，每个对象都要用```{}```包裹，每个对象之间用```,```隔开。*** 例：
 ``` typescript
-theme: FileList([
-    {...},
-    {...},
-    {...},
-    {...}
-])
+export default defineUserConfig({
+    ....
+    theme: FileList([
+        {...},
+        {...},
+        {...},
+        {...}
+    ]),
+    .....
+});
 ```
 下面的所有配置示例都是 ```FileList``` 函数的参数数组中的一个对象的示例。
 
