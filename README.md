@@ -75,7 +75,7 @@ export default defineUserConfig({
 如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
 并且在开发阶段也有很好的预览体验。
 
-- downProxy: 下载代理，设计上可以支持各种不太的代理，但是目前只有 ```cloudflarePagesDownProxy```。
+- downProxy: 下载代理，设计上可以支持各种不同的代理，但是目前只有 ```cloudflarePagesDownProxy```。
 ``` typescript
 {
   mountPath:"/",
