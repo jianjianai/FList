@@ -92,11 +92,47 @@ pnpm run build
 注意红色的波浪线，这表示你的配置文件格式写错了，错误的配置文件会导致网页无法构建。下图的 ```mountPath``` 拼错了一个字母，被编辑器检查出来了。
 ![image](https://github.com/user-attachments/assets/efc007b7-5b9e-43e1-9d3c-e238dec114f7)
 
+编辑完成之后就可以将文件推送到GitHub上了
+![image](https://github.com/user-attachments/assets/6dbc7070-5ef5-4e7f-b7e7-ae9c1fa7d3a5)
 
 
 </details>
 
+###### Gitpod
 
+<details>
+<summary>展开查看</summary>
+打开 Gitpod 主页 [https://gitpod.io/](https://gitpod.io/)
+
+![image](https://github.com/user-attachments/assets/825489e1-5945-4b89-9df1-255fe6037844)
+
+使用 GitHub 登录
+![image](https://github.com/user-attachments/assets/374312ff-be37-47b6-b6c7-725081fff24d)
+
+![image](https://github.com/user-attachments/assets/f75e6631-4ab2-4c67-8a1f-edcae028502e)
+
+![image](https://github.com/user-attachments/assets/7cbe5f34-b8b5-4476-a302-142ed8e700a0)
+
+打开仓库，很快就加载好了
+![image](https://github.com/user-attachments/assets/fb73dbbc-ec98-4878-9669-c8fd1c4dc601)
+
+按住 ctrl 点击链接可以打开新标签页预览
+![image](https://github.com/user-attachments/assets/eb21a234-8873-4639-8b79-de019f97e102)
+
+点击打开配置文件即可开始编辑
+![image](https://github.com/user-attachments/assets/265fc70e-5fef-48d7-8a24-0178c519dbe7)
+
+注意红色的波浪线，这表示你的配置文件格式写错了，错误的配置文件会导致网页无法构建。下图的 ```mountPath``` 拼错了一个字母，被编辑器检查出来了。
+![image](https://github.com/user-attachments/assets/79f5fdc1-cc17-470b-88c8-4dd91f52a011)
+
+编辑完成后提交文件
+![image](https://github.com/user-attachments/assets/bcee629a-ae03-4a0b-ab9a-4c59d5dbe5b8)
+
+提交之后再次点击即可将文件同步到 GitHub
+![image](https://github.com/user-attachments/assets/adaf308e-e09c-4bf7-ac1e-dd53368ff7c1)
+
+
+</details>
 
 </details>
 
