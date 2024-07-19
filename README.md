@@ -20,12 +20,14 @@
 
 
 # **拥有自己的 ```Flist``` 一共三步**
-1. 📚 配置：了解如何配置 ```FList``` 的配置文件
-2. 📄 编辑：使用自己喜欢的工具编辑配置文件并预览效果
-3. 📦 部署：部署到自己喜欢的平台
+1. 📚 **了解配置文件的写法**：了解如何配置 ```FList``` 的配置文件
+2. 📄 **使用趁手的工具编辑配置文件**：使用自己喜欢的工具编辑配置文件并预览效果
+3. 📦 **部署到自己喜欢的平台**：部署到自己喜欢的平台上
 
 
-## 1. 配置
+## 1. 了解配置文件的写法
+
+**这个部分可以先跳过，直接到第二步，需要的时候再回来看。**
 
 ### 配置文源基础
 一些必须要了解的东西
@@ -54,12 +56,18 @@ export default defineUserConfig({
 下面的所有配置示例都是 ```FileList``` 函数的参数数组中的一个对象的示例。
 </details>
 
-### 挂载 GitHub Releases
+### 挂载文件到 FList
+将各种各样的不同来源的文件挂载到文件列表上
+
+<details>
+<summary>展开查看</summary>
+
+#### 挂载 GitHub Releases
 将 GitHub Releases 挂载到网盘上
 <details>
 <summary>展开查看</summary>
 
-#### 基础
+##### 配置方法
 将 ```jianjianai``` 的 ```FList``` 仓库挂载到根目录 ```/``` 下
 
 - mountPath: 挂载路径,就是将文件源中的文件放到什么路径下
@@ -72,22 +80,7 @@ export default defineUserConfig({
 ```
 这样就把 ```jianjianai``` 的 ```FList``` 仓库挂载到了根目录 ```/``` 下了。
 
-#### 配置代理
-如果直接从GitHub下载速度可能不佳。 并且由于跨域的原因，PDF，TXT，这些文件无法预览，只能下载。（视频图片音频可以预览）。建议配置下载代理。
-
-如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
-并且在开发阶段也有很好的预览体验。
-
-- downProxy: 下载代理，设计上可以支持各种不同的代理，但是目前只有 ```cloudflarePagesDownProxy```。
-``` typescript
-{
-  mountPath:"/",
-  analysis:githubReleasesFilesAnalysis({user:"jianjianai", repository:"FList"}),
-  downProxy:cloudflarePagesDownProxy(),
-}
-```
-
-#### githubReleasesFilesAnalysis 特性
+##### githubReleasesFilesAnalysis 特性
 ```githubReleasesFilesAnalysis``` 会将  ```GitHub Releases```
 中的每个标签解析为一个目录，标签下发行的文件放到这个目录中。例如:
 - ```v1.0``` -> ```/v1.0```
@@ -100,14 +93,20 @@ export default defineUserConfig({
 - ```v1.0/test``` -> ```/v1.0/test```
 - ```test/test2``` -> ```/test/test2```
 
+##### 最佳实践
+如果直接从GitHub下载速度可能不佳。 
+并且由于跨域的原因，PDF，TXT，这些文件无法预览，只能下载。（视频图片音频可以预览）。
+**建议配置下载代理。**
+
 </details>
 
-### 挂载 URL 下载地址
+
+#### 挂载 URL 下载地址
 如果拥有某个文件的加载地址，也可以将其挂载到 FList 上。
 <details>
 <summary>展开查看</summary>
 
-#### 基础
+##### 配置方法
 将 ```https://example.com/test.jpg``` 的文件挂载到 ```/example``` 下,有两种配置文件分析器的的方式。
 
 1. 将挂载路径设置到```/example```下，之后配置 ```fileUrlTreeAnalysis``` ,将文件放到 ```/``` 下。
@@ -146,24 +145,10 @@ export default defineUserConfig({
 }
 ```
 
-#### 配置代理
+##### 最佳实践
 
 如果您的文件下载地址访问速度不佳。 或者由于跨域的原因，PDF，TXT，这些文件无法预览，可以配置代理。
 
-如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
-并且在开发阶段也有很好的预览体验。
-
-- downProxy: 下载代理，设计上可以支持各种不同的代理，但是目前只有 ```cloudflarePagesDownProxy```。
-``` typescript
-{
-  mountPath:"/",
-  analysis:fileUrlTreeAnalysis({
-    "/example/test.jpg":"https://example.com/test.jpg",
-    ....
-  }),
-  downProxy:cloudflarePagesDownProxy(),
-}
-```
 
 如果只想代理部分文件，可以将文件分析器分为两个来配置
 ``` typescript
@@ -189,12 +174,39 @@ export default defineUserConfig({
 </details>
 
 
-## 2. 编辑配置文件
+
+</details>
+
+
+### 配置下载代理
+有些文件源国内下载速度不佳，配置代理可以提高下载和预览加载的速度，同时也可以解决跨域问题。
+
+<details>
+<summary>展开查看</summary>
+
+
+如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
+并且在开发阶段也有很好的预览体验。
+
+- downProxy: 下载代理，设计上可以支持各种不同的代理，但是目前只有 ```cloudflarePagesDownProxy```。
+``` typescript
+{
+  mountPath:....,
+  analysis:....,
+  downProxy:cloudflarePagesDownProxy(),
+}
+```
+
+</details>
+
+
+## 2. 使用趁手的工具编辑配置文件
 在编辑配置文件之前，首先需要 Fork 此仓库。
 <details>
 <summary>不知道如何 Fork ? 点击展开查看。</summary>
 
-![image](https://github.com/user-attachments/assets/0d1399f4-c0bf-49a9-9734-ff09fab6ebdb)
+![image](https://github.com/user-attachments/assets/03ce03d2-0171-4731-9e9a-bcb4ed57356b)
+![image](https://github.com/jianjianai/microsoft-copilot-porxy/assets/59829816/3a4be71a-bd12-4938-add8-00998c5ca0aa)
 
 </details>
 
@@ -220,6 +232,10 @@ export default defineUserConfig({
 </details>
 
 ### 使用在线IDE编辑器修改(最推荐！没门槛)
+- 🎉 修改效果实时预览
+- 🎉 编辑器检查配置文件是否正确(有代码提示)
+- 🎉 无需下载运行环境，在线编辑(只需一个浏览器)
+
 
 <details>
 <summary>展开查看</summary>
@@ -303,12 +319,38 @@ export default defineUserConfig({
 
 </details>
 
-#### 下载代码本地修改(需要熟悉开发流程)
+### 下载代码本地修改(需要熟悉开发流程)
+- 😞 需要学习很多开发相关的知识(有很多)
+- 😞 需要下载和配置很多环境(很麻烦)
+<details>
+<summary>展开查看</summary>
 
+会的应该都会，不会的估计也不会看这个哈哈。
 
+推荐使用 pnpm , npm yarm 都一样,改个前缀就行。
+1. 下载依赖包
+``` shell
+pnpm install
+```
 
-## 2. 部署
+2. 预览
+``` shell
+pnpm run dev
+```
+
+3. 构建
+``` shell
+pnpm run build
+```
+
+</details>
+
+## 3. 部署到自己喜欢的平台
 ### Cloudflare Pages (推荐！最完整的功能)
+- 🎉 部署简单，完全免费
+- 🎉 Pages 限制每日 100000 次请求 (打开网页，切换页面和下载都不消耗次数，预览和下载使用 ```cloudflarePagesDownProxy``` 代理的文件才消耗次数。)
+- 😞 晚高峰可能网站可能不太流畅
+
 <details>
 <summary>展开查看</summary>
 
@@ -324,21 +366,23 @@ pnpm run build
 ```
 
 ### 详细教学
-不懂的话展开详细教学吧。
 
-#### 1.Fork此仓库
-
-![image](https://github.com/user-attachments/assets/03ce03d2-0171-4731-9e9a-bcb4ed57356b)
-![image](https://github.com/jianjianai/microsoft-copilot-porxy/assets/59829816/3a4be71a-bd12-4938-add8-00998c5ca0aa)
-
-
-
-
+到时候再补充吧，先写这么多。
 
 </details>
 
+### GitHub Pages
+- 🎉 部署简单，完全免费
+- 😞 限制每月 100GB 流量。
+- 😞 国内访问速度不太理想
 
 
+<details>
+<summary>展开查看</summary>
+
+到时候补充
+
+</details>
 
 ## 鸣谢
 #### 以下是用到的工具或库，感谢这些项目的作者们的辛苦付出
