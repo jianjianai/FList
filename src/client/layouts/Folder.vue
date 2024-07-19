@@ -24,7 +24,7 @@ const children = computed(()=>frontmatter.value.folder?.children);
           <div class="t-up-item">更新时间</div>
         </div>
         <!--      行-->
-        <FButtonLink class="td" v-for="file of children" :to="`./${file.name}/`">
+        <FButtonLink class="td" v-for="file of children" :to="`./${encodeURI(file.name)}/`">
           <div class="t-name">
             <FileTypeIcon class="file-icon" :isFolder="!!file.isFolder" :fileName="file.name" />
             <span class="file-name" :title="file.name">{{file.name}}</span>

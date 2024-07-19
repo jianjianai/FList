@@ -3,6 +3,7 @@ import { defineUserConfig } from 'vuepress'
 import { FileList } from './src/node/index.js'
 import {githubReleasesFilesAnalysis} from "./src/node/analysis/GithubReleasesFilesAnalysis.js";
 import {cloudflarePagesDownProxy} from "./src/node/proxy/cloudflarePages/cloudflarePages.js";
+import {fileUrlTreeAnalysis} from "./src/node/analysis/FileUrlTreeAnalysis.js";
 
 /**
  * 站点配置文件，没有注释的选项如果不知道有什么作用不建议修改，有注释的选项可以根据注释修改
@@ -26,7 +27,7 @@ export default defineUserConfig({
     {
       // 挂载路径
       mountPath:"/KnapsackToGo4下载",
-      // 文件解析器，目前只有一个 就是githubReleasesFilesAnalysis,可以解析github的release文件
+      // 文件解析器，这里使用githubReleasesFilesAnalysis,可以解析github的release文件
       analysis:githubReleasesFilesAnalysis({
         // 仓库所有者的用户名
         user:"jianjianai",
@@ -47,6 +48,16 @@ export default defineUserConfig({
       mountPath:"/",
       analysis:githubReleasesFilesAnalysis({user:"jianjianai", repository:"FList"}),
       downProxy:cloudflarePagesDownProxy(),
+    },
+    {
+      mountPath:"/",
+      // 这里使用 fileUrlTreeAnalysis 文件放到对应的文件路径中
+      analysis:fileUrlTreeAnalysis({
+        "/test2/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/文件树测试/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
+      }),
+      downProxy:cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
     }
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
