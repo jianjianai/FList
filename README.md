@@ -5,10 +5,10 @@
 
 
 ## 为什么选择 FList
-- **轻量**：静态页面生成，无需数据库，无需服务器，Cloudflare Pages、Github Pages、Vercel、Netlify等都可以轻松部署，完全免费。
-- **便捷**：支持视频、音频、图片、PDF 文件的在线预览。
-- **开箱即用**：只需简单配置，即可开箱即用，无需繁琐操作。
-- **搜索引擎友好**：静态页面生成，这使得页面上的内容可被搜索引擎很好的抓取
+- ⚡ **轻量**：静态页面生成，无需数据库，无需服务器，Cloudflare Pages、Github Pages、Vercel、Netlify等都可以轻松部署，完全免费。
+- 🧰 **便捷**：支持视频、音频、图片、PDF 文件的在线预览。
+- 📦 **开箱即用**：只需简单配置，即可开箱即用，无需繁琐操作。
+- 🔎 **搜索引擎友好**：静态页面生成，这使得页面上的内容可被搜索引擎很好的抓取
 
 ## 体验
 ### 演示站
@@ -20,9 +20,9 @@
 
 
 # **拥有自己的 ```Flist``` 一共三步**
-1. 配置：了解如何配置 ```FList``` 的配置文件
-2. 编辑：使用自己喜欢的工具编辑配置文件并预览效果
-3. 部署：部署到自己喜欢的平台
+1. 📚 配置：了解如何配置 ```FList``` 的配置文件
+2. 📄 编辑：使用自己喜欢的工具编辑配置文件并预览效果
+3. 📦 部署：部署到自己喜欢的平台
 
 
 ## 1. 配置
@@ -193,10 +193,15 @@ export default defineUserConfig({
 在编辑配置文件之前，首先需要 Fork 此仓库。
 <details>
 <summary>不知道如何 Fork ? 点击展开查看。</summary>
+
 ![image](https://github.com/user-attachments/assets/0d1399f4-c0bf-49a9-9734-ff09fab6ebdb)
+
 </details>
 
-### 直接在GitHub上修改(容易写错配置文件(没有代码提示) 无法预览)
+### 直接在GitHub上修改
+- 🎉 方便快捷
+- 😞 容易写错配置文件(没有代码提示) 
+- 😞 无法预览
 <details>
 <summary>展开查看</summary>
 
@@ -220,6 +225,10 @@ export default defineUserConfig({
 <summary>展开查看</summary>
 
 #### StackBlitz
+- 🎉 本地运行，编辑器无延迟
+- 😞 由于在本地运行 GitHub 访问较慢的小伙伴可能需要多次刷新才能加载成功。
+- 😞 由于浏览器限制，无法预览配置了代理的文件
+- 😞 由于在本地运行，推送编辑好的文件到 GitHub 可能失败，需要多次尝试。
 
 <details>
 <summary>展开查看</summary>
@@ -255,18 +264,20 @@ export default defineUserConfig({
 </details>
 
 #### Gitpod
+- 🎉 代码在远程运行，项目秒加载。GitHub秒推送。
+- 😞 编辑器有延迟。
+- ~~😞 对 GitHub 账号有限制，没记错应该是注册满6个月才能使用。也许现在没限制了。~~
 
 <details>
 <summary>展开查看</summary>
 打开 Gitpod 主页 [https://gitpod.io/](https://gitpod.io/)
 
-![image](https://github.com/user-attachments/assets/825489e1-5945-4b89-9df1-255fe6037844)
-
 使用 GitHub 登录
-![image](https://github.com/user-attachments/assets/374312ff-be37-47b6-b6c7-725081fff24d)
+![image](https://github.com/user-attachments/assets/825489e1-5945-4b89-9df1-255fe6037844)
 
 ![image](https://github.com/user-attachments/assets/f75e6631-4ab2-4c67-8a1f-edcae028502e)
 
+选择 Fork 的仓库
 ![image](https://github.com/user-attachments/assets/7cbe5f34-b8b5-4476-a302-142ed8e700a0)
 
 打开仓库，很快就加载好了
