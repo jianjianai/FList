@@ -191,6 +191,10 @@ export default defineUserConfig({
 
 ## 2. 编辑配置文件
 在编辑配置文件之前，首先需要 Fork 此仓库。
+<details>
+<summary>不知道如何 Fork ? 点击展开查看。</summary>
+![image](https://github.com/user-attachments/assets/0d1399f4-c0bf-49a9-9734-ff09fab6ebdb)
+</details>
 
 ### 直接在GitHub上修改(容易写错配置文件(没有代码提示) 无法预览)
 <details>
