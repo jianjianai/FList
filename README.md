@@ -20,6 +20,8 @@
 <details>
 <summary>展开查看</summary>
 
+懂得小伙伴都懂，看这两行就够了。
+
 - Build command
 ``` shell
 pnpm run build
@@ -28,6 +30,79 @@ pnpm run build
 ``` shell
 .vuepress/dist
 ```
+
+### 详细教学
+不懂的话展开详细教学吧。
+
+#### 1.Fork此仓库
+
+![image](https://github.com/user-attachments/assets/03ce03d2-0171-4731-9e9a-bcb4ed57356b)
+![image](https://github.com/jianjianai/microsoft-copilot-porxy/assets/59829816/3a4be71a-bd12-4938-add8-00998c5ca0aa)
+
+#### 2.修改配置文件
+##### 直接在GitHub上修改(容易写错配置文件(没有代码提示) 无法预览)
+<details>
+<summary>展开查看</summary>
+
+在自己Fork的仓库打开配置文件
+![image](https://github.com/user-attachments/assets/02d5c9f4-9636-4b4b-b021-2f01c25f29b8)
+
+点击编辑按钮
+![image](https://github.com/user-attachments/assets/287f1595-e14f-4f8a-8136-900f44502adb)
+
+编辑好之后点击提交
+![image](https://github.com/user-attachments/assets/07052290-2453-4247-b248-f3c890920bb0)
+
+![image](https://github.com/user-attachments/assets/0a92a00c-a9df-4792-abdb-0c8212b099bd)
+
+
+</details>
+
+##### 使用在线IDE编辑器修改(最推荐！没门槛)
+
+<details>
+<summary>展开查看</summary>
+
+###### StackBlitz
+
+<details>
+<summary>展开查看</summary>
+打开 StackBlitz 的主页 [https://stackblitz.com/](https://stackblitz.com/)
+    
+![image](https://github.com/user-attachments/assets/7e470478-617d-4507-a686-9aa89465a1fb)
+
+![image](https://github.com/user-attachments/assets/f1294d54-d833-4439-b00f-fcff1b36a776)
+
+![image](https://github.com/user-attachments/assets/b58f55f0-aa44-4f5c-938b-9788430e6bcf)
+
+![image](https://github.com/user-attachments/assets/93bf3493-202d-4806-96b3-2d0e56c41e45)
+
+等等项目加载，如果右边的等等部分出现红色则可能是因为网络原因失败了，这个时候刷新网页，重新加载。
+![image](https://github.com/user-attachments/assets/664c53b1-d470-4b01-b08e-aeca6a2f3252)
+
+直到右边出现预览则成功 (因为 StackBlitz 是运行在浏览器上的所以配置了代理的文件无法预览)
+![image](https://github.com/user-attachments/assets/dce389fc-0eae-424a-9b8a-eecde75859b9)
+
+打开配置文件编辑。
+![image](https://github.com/user-attachments/assets/39a86ceb-b078-4922-9035-55c7a86743e1)
+
+编辑好后按 Ctrl+S 保存当前文件即可马上预览效果。
+![image](https://github.com/user-attachments/assets/cd205dec-f1cb-4301-abe8-a36624f19396)
+
+注意红色的波浪线，这表示你的配置文件格式写错了，错误的配置文件会导致网页无法构建。下图的 ```mountPath``` 拼错了一个字母，被编辑器检查出来了。
+![image](https://github.com/user-attachments/assets/efc007b7-5b9e-43e1-9d3c-e238dec114f7)
+
+
+
+</details>
+
+
+
+</details>
+
+##### 下载代码本地修改(需要熟悉开发流程)
+
+
 
 </details>
 
