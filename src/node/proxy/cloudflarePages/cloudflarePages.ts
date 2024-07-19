@@ -64,8 +64,8 @@ onExtendsBundlerOptions(async (options,app)=>{
     }
 });
 
-async function cloudflarePagesDownProxyInner(sourceUrl:string):Promise<string>{
-    const downProxyPath = includes+`${hashCode(sourceUrl)}/${sourceUrl.substring(sourceUrl.lastIndexOf("/")+1)}`;
+async function cloudflarePagesDownProxyInner(sourceUrl:string,fileName:string,contentType?:string):Promise<string>{
+    const downProxyPath = includes+`${hashCode(sourceUrl)}/${encodeURIComponent(fileName)}`;
     proxyConfig[downProxyPath] = sourceUrl;
     return downProxyPath;
 }
@@ -75,7 +75,7 @@ async function cloudflarePagesDownProxyInner(sourceUrl:string):Promise<string>{
  * 使用cloudflare pages的下载代理
  * */
 export function cloudflarePagesDownProxy():DownProxy{
-    return (sourceUrl)=>cloudflarePagesDownProxyInner(sourceUrl);
+    return (sourceUrl,fileName,contentType)=>cloudflarePagesDownProxyInner(sourceUrl,fileName,contentType);
 }
 
 

@@ -1,7 +1,7 @@
 import {abFolders, addFileToFileTree, deepGetAllFile, Folder, reCalcFolder} from "./files.js";
 
 
-export type DownProxy = (sourceUrl:string)=>Promise<string>;
+export type DownProxy = (sourceUrl:string,fileName:string,contentType?:string)=>Promise<string>;
 export type Analysis = ()=>Promise<Folder>;
 export interface AnalysisConfig{
     /**一个函数,接收源url,返回下载url*/
@@ -23,7 +23,7 @@ async function analysisAndDownProxy(config:AnalysisConfig):Promise<Folder>{
     }
     const allFile = deepGetAllFile(folder);
     for (let file of allFile) {
-        file.url = await config.downProxy(file.url)
+        file.url = await config.downProxy(file.url,file.name,file.contentType);
     }
     return folder;
 }
