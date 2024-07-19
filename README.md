@@ -284,7 +284,7 @@ export default defineUserConfig({
 ![image](https://github.com/user-attachments/assets/fb73dbbc-ec98-4878-9669-c8fd1c4dc601)
 
 按住 ctrl 点击链接可以打开新标签页预览
-![image](https://github.com/user-attachments/assets/eb21a234-8873-4639-8b79-de019f97e102)
+![image](https://github.com/user-attachments/assets/e4e6a568-eb2b-4b14-ad7c-60f32d26608f)
 
 点击打开配置文件即可开始编辑
 ![image](https://github.com/user-attachments/assets/265fc70e-5fef-48d7-8a24-0178c519dbe7)
