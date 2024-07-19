@@ -1,5 +1,5 @@
 # FList - 一个简洁的在线文件列表
-将 GitHub Releases 以类似网盘的形式展示在网页上，方便用户下载开源软件。
+将 GitHub Releases,文件下载url等,以类似网盘的形式展示在网页上，方便用户下载开源软件。
 支持视频、音频、图片、PDF 等文件的在线预览。
 
 ## 为什么选择 FList
@@ -102,6 +102,91 @@ export default defineUserConfig({
 
 </details>
 
+
+#### 挂载 URL 下载地址
+<details>
+<summary>展开查看</summary>
+
+##### 基础
+将 ```https://example.com/test.jpg``` 的文件挂载到 ```/example``` 下,有两种配置文件分析器的的方式。
+
+1. 将挂载路径设置到```/example```下，之后配置 ```fileUrlTreeAnalysis``` ,将文件放到 ```/``` 下。
+``` typescript
+{
+  mountPath:"/example",
+  analysis:fileUrlTreeAnalysis({
+    "/test.jpg":"https://example.com/test.jpg"
+  }),
+}
+```
+
+2. 将挂载路径设置到```/```下，之后配置 ```fileUrlTreeAnalysis``` ,将文件放到 ```/example``` 下。
+``` typescript
+{
+  mountPath:"/",
+  analysis:fileUrlTreeAnalysis({
+    "/example/test.jpg":"https://example.com/test.jpg"
+  }),
+}
+```
+
+```fileUrlTreeAnalysis``` 可以一次分析多个文件。
+
+``` typescript
+{
+  mountPath:"/",
+  analysis:fileUrlTreeAnalysis({
+    "/example/test.jpg":"https://example.com/test.jpg",
+    "/test1.jpg":"https://example.com/test1.jpg",
+    "/test/test2.jpg":"https://example.com/test2.jpg",
+    "/example/test3.jpg":"https://example.com/test3.jpg",
+    "/example/test/test4.jpg":"https://example.com/test4.jpg",
+    .....
+  }),
+}
+```
+
+##### 配置代理
+
+如果您的文件下载地址访问速度不佳。 或者由于跨域的原因，PDF，TXT，这些文件无法预览，可以配置代理。
+
+如果你使用 ```Cloudflare Pages``` 则可以直接使用 ```cloudflarePagesDownProxy()``` 他会自动完成全部配置，
+并且在开发阶段也有很好的预览体验。
+
+- downProxy: 下载代理，设计上可以支持各种不同的代理，但是目前只有 ```cloudflarePagesDownProxy```。
+``` typescript
+{
+  mountPath:"/",
+  analysis:fileUrlTreeAnalysis({
+    "/example/test.jpg":"https://example.com/test.jpg",
+    ....
+  }),
+  downProxy:cloudflarePagesDownProxy(),
+}
+```
+
+如果只想代理部分文件，可以将文件分析器分为两个来配置
+``` typescript
+// 不需要代理的文件
+{
+  mountPath:"/",
+  analysis:fileUrlTreeAnalysis({
+    "/example/test.jpg":"https://example.com/test.jpg",
+    ....
+  }),
+},
+// 需要代理的文件
+{
+  mountPath:"/",
+  analysis:fileUrlTreeAnalysis({
+    "/example/test1.jpg":"https://example.com/test1.jpg",
+    ....
+  }),
+  downProxy:cloudflarePagesDownProxy(),
+}
+```
+
+</details>
 
 
 ## 鸣谢
