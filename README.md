@@ -54,6 +54,9 @@ export default defineUserConfig({
 });
 ```
 下面的所有配置示例都是 ```FileList``` 函数的参数数组中的一个对象的示例。
+
+---
+
 </details>
 
 ### 挂载文件到 FList
@@ -97,6 +100,8 @@ export default defineUserConfig({
 如果直接从GitHub下载速度可能不佳。 
 并且由于跨域的原因，PDF，TXT，这些文件无法预览，只能下载。（视频图片音频可以预览）。
 **建议配置下载代理。**
+
+---
 
 </details>
 
@@ -171,9 +176,12 @@ export default defineUserConfig({
 }
 ```
 
+---
+
 </details>
 
 
+---
 
 </details>
 
@@ -197,6 +205,8 @@ export default defineUserConfig({
 }
 ```
 
+---
+
 </details>
 
 
@@ -207,6 +217,8 @@ export default defineUserConfig({
 
 ![image](https://github.com/user-attachments/assets/03ce03d2-0171-4731-9e9a-bcb4ed57356b)
 ![image](https://github.com/jianjianai/microsoft-copilot-porxy/assets/59829816/3a4be71a-bd12-4938-add8-00998c5ca0aa)
+
+---
 
 </details>
 
@@ -228,6 +240,7 @@ export default defineUserConfig({
 
 ![image](https://github.com/user-attachments/assets/0a92a00c-a9df-4792-abdb-0c8212b099bd)
 
+---
 
 </details>
 
@@ -276,6 +289,7 @@ export default defineUserConfig({
 编辑完成之后就可以将文件推送到GitHub上了
 ![image](https://github.com/user-attachments/assets/6dbc7070-5ef5-4e7f-b7e7-ae9c1fa7d3a5)
 
+---
 
 </details>
 
@@ -314,8 +328,11 @@ export default defineUserConfig({
 提交之后再次点击即可将文件同步到 GitHub
 ![image](https://github.com/user-attachments/assets/adaf308e-e09c-4bf7-ac1e-dd53368ff7c1)
 
+---
 
 </details>
+
+---
 
 </details>
 
@@ -343,6 +360,8 @@ pnpm run dev
 pnpm run build
 ```
 
+---
+
 </details>
 
 ## 3. 部署到自己喜欢的平台
@@ -369,6 +388,8 @@ pnpm run build
 
 到时候再补充吧，先写这么多。
 
+---
+
 </details>
 
 ### GitHub Pages
@@ -381,6 +402,8 @@ pnpm run build
 <summary>展开查看</summary>
 
 到时候补充
+
+---
 
 </details>
 
