@@ -1,6 +1,8 @@
 # FList - 一个简洁的在线文件列表
 将 GitHub Releases,文件下载url等,以类似网盘的形式展示在网页上，方便用户下载开源软件。
 支持视频、音频、图片、PDF 等文件的在线预览。
+![image](https://github.com/user-attachments/assets/1ec0bc23-6fdb-45c6-a58b-1db13864aed7)
+
 
 ## 为什么选择 FList
 - **轻量**：静态页面生成，无需数据库，无需服务器，Cloudflare Pages、Github Pages、Vercel、Netlify等都可以轻松部署，完全免费。
