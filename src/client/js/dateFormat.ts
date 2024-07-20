@@ -3,7 +3,7 @@
  * 将时间格式化为 yyyy-mm-dd hh:mm
  * */
 export function dateFormat(dateNumber: number|undefined): string {
-    if(dateNumber === undefined){
+    if(!dateNumber){
         return '未知';
     }
     const date = new Date(dateNumber);
