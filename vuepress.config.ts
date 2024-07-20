@@ -4,6 +4,7 @@ import { FileList } from './src/node/index.js'
 import {githubReleasesFilesAnalysis} from "./src/node/analysis/GithubReleasesFilesAnalysis.js";
 import {cloudflarePagesDownProxy} from "./src/node/proxy/cloudflarePages/cloudflarePages.js";
 import {fileUrlTreeAnalysis} from "./src/node/analysis/FileUrlTreeAnalysis.js";
+import {huggingFaceDatasetsAnalysis} from "./src/node/analysis/HuggingFaceDatasetsAnalysis.js";
 
 
 /**
@@ -35,19 +36,13 @@ export default defineUserConfig({
         // 仓库所有者的仓库名
         repository:"KnapsackToGo4"
       }),
-      // 代理，目前只有一个 就是 cloudflarePagesDownProxy,可以使用cloudflare Pages代理下载
-      // 这个是为了解决github的国内下载慢的问题，和跨域问题，建议配置，不然pdf，txt，md等文件因为跨域无法预览
-      // 如果你使用的不是 cloudflare Pages 部署需要删掉这一行，因为如果不是cloudflare Pages部署，这个代理是无法正常工作的
-      downProxy:cloudflarePagesDownProxy(),
-    },
-    {
-      // 这个仓库里的文件就没有使用代理，因此下载时会直接从GitHub下载
-      mountPath:"/BewlyBewly下载",
-      analysis:githubReleasesFilesAnalysis({user:"BewlyBewly", repository:"BewlyBewly"}),
     },
     {
       mountPath:"/",
       analysis:githubReleasesFilesAnalysis({user:"jianjianai", repository:"FList"}),
+      // 代理，目前只有一个 就是 cloudflarePagesDownProxy,可以使用cloudflare Pages代理下载
+      // 这个是为了解决github的国内下载慢的问题，和跨域问题，建议配置，不然pdf，txt，md等文件因为跨域无法预览
+      // 如果你使用的不是 cloudflare Pages 部署需要删掉这一行，因为如果不是cloudflare Pages部署，这个代理是无法正常工作的
       downProxy:cloudflarePagesDownProxy(),
     },
     {
@@ -59,7 +54,17 @@ export default defineUserConfig({
         "/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
       }),
       downProxy:cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
-    }
+    },
+    {
+      mountPath:"/huggingface测试",
+      analysis:huggingFaceDatasetsAnalysis({
+        userName:"Open-Orca",
+        datasetsName:"OpenOrca",
+        branchName:"main",
+        //最大深度,如果文件夹有很多层最大递归解析多少层，默认10
+        maxDeep:3
+      }),
+    },
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
 })
