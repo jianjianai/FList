@@ -1,4 +1,5 @@
 import {abFolders, addFileToFileTree, Folder, joinFile} from "../base/files.js";
+import {Analysis} from "../base/AllAnalysis.js";
 
 
 /**
@@ -76,6 +77,6 @@ async function githubReleasesFileTree({user,repository}:GithubRepository):Promis
 /**
  * 从GitHub仓库的releases中解析文件信息
  * */
-export function githubReleasesFilesAnalysis(config:GithubRepository){
+export function githubReleasesFilesAnalysis(config:GithubRepository):Analysis{
     return ()=>githubReleasesFileTree(config);
 }

@@ -1,10 +1,11 @@
 import {addFileToFileTree, Folder} from "../base/files.js";
+import {Analysis} from "../base/AllAnalysis.js";
 
 export type FileUrlTree = {
     [path:string]:string
 }
 
-export function fileUrlTreeAnalysis(config:FileUrlTree){
+export function fileUrlTreeAnalysis(config:FileUrlTree):Analysis{
     return async ()=>{
         const fileTree:Folder = {children:[],name:"fileUrlTreeAnalysisRoot"};
         for(let path in config){
