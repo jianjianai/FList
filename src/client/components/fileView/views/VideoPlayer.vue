@@ -55,6 +55,7 @@ onUnmounted(()=>{
   padding: 1rem 0;
 }
 .artplayer-app{
-  height: 60vh
+  height: 60vh;
+  max-height: 80vh;
 }
 </style>
