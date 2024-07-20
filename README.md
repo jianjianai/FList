@@ -14,7 +14,7 @@
 
 **支持挂载**
 - [X] GitHub Releases
-- [X] Hugging Face
+- [X] Hugging Face Datasets
 - [X] url下载链接
 
 
