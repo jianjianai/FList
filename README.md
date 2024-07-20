@@ -66,7 +66,7 @@ export default defineUserConfig({
 <summary>展开查看</summary>
 
 #### 挂载 GitHub Releases
-将 GitHub Releases 挂载到网盘上
+将 GitHub Releases 挂载到 FList 上
 <details>
 <summary>展开查看</summary>
 
@@ -181,9 +181,51 @@ export default defineUserConfig({
 </details>
 
 
+
+#### 挂载 Hugging Face Datasets
+将 Hugging Face 的 Datasets 挂载到 FList 上
+
+<details>
+<summary>展开查看</summary>
+
+##### 配置方法
+
+将用户 ```Open-Orca``` 的 ```OpenOrca``` 数据集的 ```main``` 分支挂载到 ```/huggingface测试``` 下
+
+huggingFaceDatasetsAnalysis参数
+- userName 用户名
+- datasetsName 数据集名称
+- branchName 分支名称
+- maxDeep 最大深度,如果文件夹有很多层最大递归解析多少层，默认10
+
+``` typescript
+{
+  mountPath:"/huggingface测试",
+  analysis:huggingFaceDatasetsAnalysis({
+    userName:"Open-Orca",
+    datasetsName:"OpenOrca",
+    branchName:"main",
+    //最大深度,如果文件夹有很多层最大递归解析多少层，默认10
+    maxDeep:3
+    //path:"/test" //数据集的某文件夹，只挂载这个文件夹
+  }),
+}
+```
+
+##### 最佳实践
+Hugging Face 在国内的访问速度是比较快的，所以无需配置代理就可以有很好的下载速度。
+但是也会因为跨域的原因，PDF，TXT，这些文件无法预览。所以只需要给这些文件配置代理。
+
+
+</details>
+
+
+
+
 ---
 
 </details>
+
 
 
 ### 配置下载代理
@@ -261,6 +303,7 @@ export default defineUserConfig({
 
 <details>
 <summary>展开查看</summary>
+
 打开 StackBlitz 的主页 [https://stackblitz.com/](https://stackblitz.com/)
 
 ![image](https://github.com/user-attachments/assets/7e470478-617d-4507-a686-9aa89465a1fb)
@@ -300,6 +343,7 @@ export default defineUserConfig({
 
 <details>
 <summary>展开查看</summary>
+
 打开 Gitpod 主页 [https://gitpod.io/](https://gitpod.io/)
 
 使用 GitHub 登录

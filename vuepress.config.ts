@@ -61,6 +61,7 @@ export default defineUserConfig({
         userName:"Open-Orca",
         datasetsName:"OpenOrca",
         branchName:"main",
+        path:"/",
         //最大深度,如果文件夹有很多层最大递归解析多少层，默认10
         maxDeep:3
       }),
