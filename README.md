@@ -3,12 +3,20 @@
 支持视频、音频、图片、PDF 等文件的在线预览。
 ![image](https://github.com/user-attachments/assets/1ec0bc23-6fdb-45c6-a58b-1db13864aed7)
 
-
 ## 为什么选择 FList
 - ⚡ **轻量**：静态页面生成，无需数据库，无需服务器，Cloudflare Pages、Github Pages、Vercel、Netlify等都可以轻松部署，完全免费。
 - 🧰 **便捷**：支持视频、音频、图片、PDF 文件的在线预览。
 - 📦 **开箱即用**：只需简单配置，即可开箱即用，无需繁琐操作。
 - 🔎 **搜索引擎友好**：静态页面生成，这使得页面上的内容可被搜索引擎很好的抓取
+
+> [!tip]
+> FList 正在积极开发,支持更多平台。
+
+**支持挂载**
+- [X] GitHub Releases
+- [X] Hugging Face
+- [X] url下载链接
+
 
 ## 体验
 ### 演示站
