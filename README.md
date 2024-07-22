@@ -224,8 +224,7 @@ huggingFaceDatasetsAnalysis参数
 
 ##### 最佳实践
 Hugging Face 在国内的访问速度是比较快的，所以无需配置代理就可以有很好的下载速度。
-但是也会因为跨域的原因，PDF，TXT，这些文件无法预览。所以只需要给这些文件配置代理。
-
+Hugging Face 还允许跨域，所以，PDF，TXT，这些文件也都可以预览。
 
 </details>
 
