@@ -1,4 +1,4 @@
-# FList - 一个简洁的在线文件列表
+# FList - 一个简洁的在线文件列表 
 将 GitHub Releases,Hugging Face,文件url等，渲染成类似网盘的文件列表显示在网页上，方便用户下载开源软件。
 支持视频、音频、图片、PDF 等文件的在线预览。
 ![image](https://github.com/user-attachments/assets/1ec0bc23-6fdb-45c6-a58b-1db13864aed7)
