@@ -30,6 +30,11 @@
     --tip-color-info: #5bc0de;
 }
 
+/**---------------文件列表相关 Folder.vue--------------------*/
+:root{
+    --file-icon-c:var(--t-color-1);
+    --folder-icon-c: #5988ff;
+}
 /**---------------通知相关 Notification.vue--------------------*/
 :root{
     /** 通知的颜色 */
