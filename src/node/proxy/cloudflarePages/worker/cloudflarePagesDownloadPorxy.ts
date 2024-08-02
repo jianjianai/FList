@@ -10,7 +10,12 @@ export async function downloadProxy(request: Request,proxyConfig:{[path:string]:
     }catch(error){
         return new Response("url error: "+error,{status:404});
     }
-    let res = await fetch(downUrl,request);
+    let reqConfig:RequestInit = {
+        method:request.method,
+        headers:request.headers,
+        body:request.body
+    }
+    let res = await fetch(downUrl,reqConfig);
     let count = 0;
     let lastUrl = downUrl;
     while (true){
@@ -23,7 +28,7 @@ export async function downloadProxy(request: Request,proxyConfig:{[path:string]:
             const loto = headers.get("Location");
             if(loto){
                 lastUrl = new URL(loto,lastUrl);
-                res = await fetch(lastUrl,request);
+                res = await fetch(lastUrl,reqConfig);
                 continue;
             }
         }
