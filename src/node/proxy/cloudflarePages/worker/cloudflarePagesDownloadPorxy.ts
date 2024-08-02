@@ -10,12 +10,11 @@ export async function downloadProxy(request: Request,proxyConfig:{[path:string]:
     }catch(error){
         return new Response("url error: "+error,{status:404});
     }
-    let reqConfig:RequestInit = {
+    let res = await fetch(downUrl,{
         method:request.method,
         headers:request.headers,
         body:request.body
-    }
-    let res = await fetch(downUrl,reqConfig);
+    });
     return new Response(res.body as any,{
         headers:res.headers,
         status:res.status
