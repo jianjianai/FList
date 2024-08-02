@@ -1,6 +1,5 @@
 import { DownProxy } from "../../base/AllAnalysis.js";
-import { writeFileSync,mkdirSync } from "fs";
-import { path } from "vuepress/utils";
+import { writeFileSync, mkdirSync } from "fs";
 import { downloadProxy } from "../cloudflarePagesDownProxy/worker/cloudflarePagesDownloadPorxy.js";
 import { onExtendsBundlerOptions, onGenerated } from "../../base/eventManager.js";
 import { ProxyOptions } from "vite";
@@ -20,28 +19,17 @@ function hashCode(string: string): number {
     return hash;
 }
 
-
-const includesPrefx = "/down/" + Math.random().toString(36).substring(2) + "/";
 const proxyConfig: { [path: string]: string } = {}
-/**
- * 代理这些文件的下载并生成下载允许的路由列表
- * */
-export function getDownProxyRoutes() {
-    return {
-        "version": 3,
-        "routes": [
-            {
-                "src": includesPrefx+".*",
-                "dest": "/api/verceldown.js"
-            }
-        ]
-    };
-}
+
 
 async function vercelReleaseConfigurationFile(destPath: string) {
-    mkdirSync(path.join(destPath, "api"), { recursive: true });
-    writeFileSync(path.join(destPath, "vercel.json"), JSON.stringify(getDownProxyRoutes()));
-    writeFileSync(path.join(destPath, "api/verceldown.js"), `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
+    mkdirSync("./.vercel/output/functions/api/verceldown.func/api", { recursive: true });
+    writeFileSync(".vercel/output/functions/api/verceldown.func/.vc-config.json", JSON.stringify({
+        "runtime": "edge",
+        "deploymentTarget": "v8-worker",
+        "entrypoint": "api/verceldown.js"
+    }));
+    writeFileSync("./.vercel/output/functions/api/verceldown.func/api/verceldown.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
 }
 
 /**
@@ -70,7 +58,7 @@ onExtendsBundlerOptions(async (options, app) => {
 });
 
 async function vercelDownProxyInner(sourceUrl: string, fileName: string, contentType?: string): Promise<string> {
-    const downProxyPath = includesPrefx + `${hashCode(sourceUrl)}/${encodeURIComponent(fileName)}`;
+    const downProxyPath = `/api/verceldown/${hashCode(sourceUrl)}/${encodeURIComponent(fileName)}`;
     proxyConfig[downProxyPath] = sourceUrl;
     return downProxyPath;
 }
