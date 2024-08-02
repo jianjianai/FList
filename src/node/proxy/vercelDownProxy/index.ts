@@ -40,7 +40,7 @@ export function getDownProxyRoutes() {
 
 async function vercelReleaseConfigurationFile(destPath: string) {
     mkdirSync(path.join(destPath, "api"), { recursive: true });
-    writeFileSync(path.join(destPath, "config.json"), JSON.stringify(getDownProxyRoutes()));
+    writeFileSync(path.join(destPath, "vercel.json"), JSON.stringify(getDownProxyRoutes()));
     writeFileSync(path.join(destPath, "api/verceldown.js"), `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
 }
 
