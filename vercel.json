@@ -2,6 +2,7 @@
     "installCommand":"pnpm install",
     "buildCommand":"pnpm run build",
     "outputDirectory":".vuepress/dist",
+    
     "routes": [
         {
             "src": "/api/verceldown/.*",

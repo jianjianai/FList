@@ -23,13 +23,13 @@ const proxyConfig: { [path: string]: string } = {}
 
 
 async function vercelReleaseConfigurationFile(destPath: string) {
-    mkdirSync("./.vercel/output/functions/api/verceldown.func/api", { recursive: true });
-    writeFileSync(".vercel/output/functions/api/verceldown.func/.vc-config.json", JSON.stringify({
+    mkdirSync("./vercel/output/functions/api/verceldown.func/api", { recursive: true });
+    writeFileSync("./vercel/output/functions/api/verceldown.func/.vc-config.json", JSON.stringify({
         "runtime": "edge",
         "deploymentTarget": "v8-worker",
         "entrypoint": "api/verceldown.js"
     }));
-    writeFileSync("./.vercel/output/functions/api/verceldown.func/api/verceldown.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
+    writeFileSync("./vercel/output/functions/api/verceldown.func/api/verceldown.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
 }
 
 /**
