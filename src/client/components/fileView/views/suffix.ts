@@ -33,18 +33,18 @@ const fileTypesSuffixConfig:[string[],ViewComponent[]][] = [
     [[".txt",".text",".md"],[PreTextPlayer]],
 ]
 
-const fileTypesSuffix:{[suffix:string]:ViewComponent[]} = {}
+const fileTypesSuffix: {[suffix: string]: ViewComponent[]} = {};
 for (const ar of fileTypesSuffixConfig) {
     for (const k of ar[0]) {
-        if(!fileTypesSuffix[k]){
+        if (!fileTypesSuffix[k]) {
             fileTypesSuffix[k] = [];
         }
         fileTypesSuffix[k].push(...ar[1]);
     }
-    // 去重
-    for (const k in fileTypesSuffix) {
-        fileTypesSuffix[k] = [...new Set(fileTypesSuffix[k])];
-    }
+}
+// 去重
+for (const k in fileTypesSuffix) {
+    fileTypesSuffix[k] = [...new Set(fileTypesSuffix[k])];
 }
 
 export function getViewBySuffix(suffix: string):ViewComponent[] {
