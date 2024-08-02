@@ -1,5 +1,5 @@
-import {addFileToFileTree, Folder} from "../base/files.js";
-import {Analysis} from "../base/AllAnalysis.js";
+import {addFileToFileTree, Folder} from "../../base/files.js";
+import {Analysis} from "../../base/AllAnalysis.js";
 
 
 async function huggingFaceDatasetsAnalysisTree(fileTree:Folder,userName:string,datasetsName:string,branchName:string,rootPath:string,path:string,hasDeep:number):Promise<Folder>{

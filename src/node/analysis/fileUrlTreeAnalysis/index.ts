@@ -1,5 +1,5 @@
-import {addFileToFileTree, Folder} from "../base/files.js";
-import {Analysis} from "../base/AllAnalysis.js";
+import {addFileToFileTree, Folder} from "../../base/files.js";
+import {Analysis} from "../../base/AllAnalysis.js";
 
 export type FileUrlTree = {
     [path:string]:string
