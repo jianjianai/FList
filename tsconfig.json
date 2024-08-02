@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node16", // 或 "nodenext"
-    "module": "ESNext",
-    "target": "ESNext",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "esnext",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "types": ["vite/client","vuepress/client-types"]
   }
 }
