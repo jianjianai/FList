@@ -44,7 +44,7 @@ export default defineUserConfig({
       // 代理，目前只有一个 就是 cloudflarePagesDownProxy,可以使用cloudflare Pages代理下载
       // 这个是为了解决github的国内下载慢的问题，和跨域问题，建议配置，不然pdf，txt，md等文件因为跨域无法预览
       // 如果你使用的不是 cloudflare Pages 部署需要删掉这一行，因为如果不是cloudflare Pages部署，这个代理是无法正常工作的
-      downProxy: cloudflarePagesDownProxy(),
+      downProxy: vercelDownProxy(),
     },
     {
       mountPath: "/",
@@ -54,7 +54,7 @@ export default defineUserConfig({
         "/文件树测试/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
         "/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
       }),
-      downProxy: cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
+      downProxy: vercelDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
     },
     {
       mountPath: "/huggingface测试",
