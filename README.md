@@ -32,6 +32,7 @@
 
 - [X] Cloudflare Pages
 - [X] Vercel
+- [X] GitHub Pages
 
 ### 下载代理
 支持从这些平台代理下载文件
