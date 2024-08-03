@@ -3,8 +3,10 @@ import { writeFileSync, mkdirSync } from "fs";
 import { downloadProxy } from "../cloudflarePagesDownProxy/worker/cloudflarePagesDownloadPorxy.js";
 import { onExtendsBundlerOptions, onGenerated } from "../../base/eventManager.js";
 import { ProxyOptions } from "vite";
+import { path } from "vuepress/utils";
 
-
+const outputPath = process.env.VERCEL_URL? '/vercel/output' : "./.vercel/output";
+console.log("vercel out path is",outputPath);
 /**
  * 生成一个字符串的hashcode
  * */
@@ -23,13 +25,13 @@ const proxyConfig: { [path: string]: string } = {}
 
 
 async function vercelReleaseConfigurationFile(destPath: string) {
-    mkdirSync("./vercel/output/functions/api/verceldown.func/api", { recursive: true });
-    writeFileSync("./vercel/output/functions/api/verceldown.func/.vc-config.json", JSON.stringify({
+    mkdirSync(path.join(outputPath, "functions/api/verceldown.func"), { recursive: true });
+    writeFileSync(path.join(outputPath, "functions/api/verceldown.func/.vc-config.json"), JSON.stringify({
         "runtime": "edge",
         "deploymentTarget": "v8-worker",
-        "entrypoint": "api/verceldown.js"
+        "entrypoint": "verceldown.js"
     }));
-    writeFileSync("./vercel/output/functions/api/verceldown.func/api/verceldown.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
+    writeFileSync(path.join(outputPath, "functions/api/verceldown.func/verceldown.js"), `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);export const config = { runtime: 'edge' };`);
 }
 
 /**
