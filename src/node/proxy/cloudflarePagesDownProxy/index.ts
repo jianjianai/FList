@@ -1,5 +1,5 @@
 import {DownProxy} from "../../base/AllAnalysis.js";
-import {writeFile} from "fs";
+import {writeFileSync} from "fs";
 import {path} from "vuepress/utils";
 import {downloadProxy} from "./worker/cloudflarePagesDownloadPorxy.js";
 import {onExtendsBundlerOptions, onGenerated} from "../../base/eventManager.js";
@@ -21,7 +21,7 @@ function hashCode(string:string):number {
 }
 
 
-const includes = "/down/"+Math.random().toString(36).substring(2)+"/";
+const includesPrefx = "/down/"+Math.random().toString(36).substring(2)+"/";
 const proxyConfig:{[path:string]:string} = {}
 /**
  * 代理这些文件的下载并生成下载允许的路由列表
@@ -29,14 +29,14 @@ const proxyConfig:{[path:string]:string} = {}
 export function getDownProxyRoutes(){
     return {
         "version": 1,
-        "include": [includes+"**"],
+        "include": [includesPrefx+"**"],
         "exclude": []
     };
 }
 
 async function cloudflarePagesReleaseConfigurationFile(destPath:string){
-    await new Promise((r)=>writeFile(path.join(destPath,"_routes.json"),JSON.stringify(getDownProxyRoutes()),r));
-    await new Promise((r)=>writeFile(path.join(destPath,"_worker.js"),`${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default {fetch:(req)=>downloadProxy(req,proxyConfig)};`,r));
+    writeFileSync(path.join(destPath,"_routes.json"),JSON.stringify(getDownProxyRoutes()));
+    writeFileSync(path.join(destPath,"_worker.js"),`${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default {fetch:(req)=>downloadProxy(req,proxyConfig)};`);
 }
 
 /**
@@ -65,7 +65,7 @@ onExtendsBundlerOptions(async (options,app)=>{
 });
 
 async function cloudflarePagesDownProxyInner(sourceUrl:string,fileName:string,contentType?:string):Promise<string>{
-    const downProxyPath = includes+`${hashCode(sourceUrl)}/${encodeURIComponent(fileName)}`;
+    const downProxyPath = includesPrefx+`${hashCode(sourceUrl)}/${encodeURIComponent(fileName)}`;
     proxyConfig[downProxyPath] = sourceUrl;
     return downProxyPath;
 }

@@ -1,10 +1,11 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { FileList } from './src/node/index.js'
-import {githubReleasesFilesAnalysis} from "./src/node/analysis/GithubReleasesFilesAnalysis.js";
-import {cloudflarePagesDownProxy} from "./src/node/proxy/cloudflarePages/cloudflarePages.js";
-import {fileUrlTreeAnalysis} from "./src/node/analysis/FileUrlTreeAnalysis.js";
-import {huggingFaceDatasetsAnalysis} from "./src/node/analysis/HuggingFaceDatasetsAnalysis.js";
+import { githubReleasesFilesAnalysis } from "./src/node/analysis/githubReleasesFilesAnalysis/index.js";
+import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownProxy/index.js";
+import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/index.js";
+import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceDatasetsAnalysis/index.js";
+import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
 
 
 /**
@@ -12,7 +13,7 @@ import {huggingFaceDatasetsAnalysis} from "./src/node/analysis/HuggingFaceDatase
  * */
 export default defineUserConfig({
   bundler: viteBundler(),
-  pagePatterns:[],
+  pagePatterns: [],
   lang: 'zh-CN',
   public: `./public`,
   // 网站标题，标题颜色可在 src/client/css/main.css 中修改
@@ -28,42 +29,42 @@ export default defineUserConfig({
   theme: FileList([
     {
       // 挂载路径
-      mountPath:"/KnapsackToGo4下载",
+      mountPath: "/KnapsackToGo4下载",
       // 文件解析器，这里使用githubReleasesFilesAnalysis,可以解析github的release文件
-      analysis:githubReleasesFilesAnalysis({
+      analysis: githubReleasesFilesAnalysis({
         // 仓库所有者的用户名
-        user:"jianjianai",
+        user: "jianjianai",
         // 仓库所有者的仓库名
-        repository:"KnapsackToGo4"
+        repository: "KnapsackToGo4"
       }),
     },
     {
-      mountPath:"/",
-      analysis:githubReleasesFilesAnalysis({user:"jianjianai", repository:"FList"}),
+      mountPath: "/",
+      analysis: githubReleasesFilesAnalysis({ user: "jianjianai", repository: "FList" }),
       // 代理，目前只有一个 就是 cloudflarePagesDownProxy,可以使用cloudflare Pages代理下载
       // 这个是为了解决github的国内下载慢的问题，和跨域问题，建议配置，不然pdf，txt，md等文件因为跨域无法预览
       // 如果你使用的不是 cloudflare Pages 部署需要删掉这一行，因为如果不是cloudflare Pages部署，这个代理是无法正常工作的
-      downProxy:cloudflarePagesDownProxy(),
+      downProxy: cloudflarePagesDownProxy(),
     },
     {
-      mountPath:"/",
+      mountPath: "/",
       // 这里使用 fileUrlTreeAnalysis 文件放到对应的文件路径中
-      analysis:fileUrlTreeAnalysis({
-        "/test2/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/文件树测试/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/文件树-测试视频1.mp4":"https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
+      analysis: fileUrlTreeAnalysis({
+        "/test2/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/文件树测试/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
       }),
-      downProxy:cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
+      downProxy: cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
     },
     {
-      mountPath:"/huggingface测试",
-      analysis:huggingFaceDatasetsAnalysis({
-        userName:"Open-Orca",
-        datasetsName:"OpenOrca",
-        branchName:"main",
-        path:"/",
+      mountPath: "/huggingface测试",
+      analysis: huggingFaceDatasetsAnalysis({
+        userName: "Open-Orca",
+        datasetsName: "OpenOrca",
+        branchName: "main",
+        path: "/",
         //最大深度,如果文件夹有很多层最大递归解析多少层，默认10
-        maxDeep:3
+        maxDeep: 3
       }),
     },
     // ... 可以配置多个挂载路径和仓库，以此类推

@@ -1,5 +1,5 @@
-import {abFolders, addFileToFileTree, Folder, joinFile} from "../base/files.js";
-import {Analysis} from "../base/AllAnalysis.js";
+import {abFolders, addFileToFileTree, Folder, joinFile} from "../../base/files.js";
+import {Analysis} from "../../base/AllAnalysis.js";
 
 
 /**
