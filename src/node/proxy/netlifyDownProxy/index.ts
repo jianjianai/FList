@@ -22,9 +22,9 @@ const proxyConfig: { [path: string]: string } = {}
 
 
 async function netlifyReleaseConfigurationFile(destPath: string) {
-    mkdirSync("./netlify/edge-functions/server", { recursive: true });
-    writeFileSync("./netlify/edge-functions/server/server.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);`);
-    writeFileSync("./netlify/edge-functions/manifest.json", JSON.stringify({
+    mkdirSync("./.netlify/edge-functions/server", { recursive: true });
+    writeFileSync("./.netlify/edge-functions/server/server.js", `${downloadProxy.toString()}\nconst proxyConfig = ${JSON.stringify(proxyConfig)}\nexport default (req)=>downloadProxy(req,proxyConfig);`);
+    writeFileSync("./.netlify/edge-functions/manifest.json", JSON.stringify({
         "version": 1,
         "functions": [
             {
