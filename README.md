@@ -32,6 +32,7 @@
 
 - [X] Cloudflare Pages
 - [X] Vercel
+- [X] Netlify
 - [X] GitHub Pages
 
 ### 下载代理
@@ -39,6 +40,7 @@
 
 - [X] Cloudflare Pages
 - [X] Vercel
+- [X] Netlify
 
 ## 他是如何工作的?
 Flist 的工作原理很像是一个爬虫，它可以获取各个平台上的文件下载链接，之后将这些文件渲染成 HTML 静态页面，当用户下载文件时实际上会从原站下载。
