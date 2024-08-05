@@ -6,6 +6,7 @@ import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownPr
 import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/index.js";
 import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceDatasetsAnalysis/index.js";
 import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
+import { netlifyDownProxy } from './src/node/proxy/netlifyDownProxy/index.js';
 
 
 /**
