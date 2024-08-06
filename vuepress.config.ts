@@ -7,6 +7,7 @@ import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/ind
 import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceDatasetsAnalysis/index.js";
 import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
 import { netlifyDownProxy } from './src/node/proxy/netlifyDownProxy/index.js';
+import { giteeReleasesFilesAnalysis } from './src/node/analysis/giteeReleasesFilesAnalysis/index.js';
 
 
 /**
@@ -68,6 +69,14 @@ export default defineUserConfig({
         maxDeep: 3
       }),
     },
+    {
+      mountPath: "/gitee测试",
+      analysis: giteeReleasesFilesAnalysis({
+        user: "jja8",
+        repository: "flist-test",
+        direction: "desc"
+      })
+    }
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
 })
