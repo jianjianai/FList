@@ -24,6 +24,7 @@
 直接将这些平台的文件挂载到 FList 列表中。
 
 - [X] GitHub Releases
+- [X] Gitee 发行版
 - [X] Hugging Face Datasets
 - [X] URL 下载链接
 
