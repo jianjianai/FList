@@ -8,6 +8,7 @@ import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceData
 import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
 import { netlifyDownProxy } from './src/node/proxy/netlifyDownProxy/index.js';
 import { giteeReleasesFilesAnalysis } from './src/node/analysis/giteeReleasesFilesAnalysis/index.js';
+import { githubReposAnalysis } from './src/node/analysis/githubReposAnalysis/index.js';
 
 
 /**
@@ -76,7 +77,15 @@ export default defineUserConfig({
         repository: "flist-test",
         direction: "desc"
       })
-    }
+    },
+    {
+      mountPath: "/ProgrammingVTuberLogos",
+      analysis: githubReposAnalysis({
+        user: "Aikoyori",
+        repository: "ProgrammingVTuberLogos",
+      }),
+      downProxy: cloudflarePagesDownProxy()
+    },
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
 })
