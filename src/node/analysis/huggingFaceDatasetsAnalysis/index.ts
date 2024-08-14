@@ -1,4 +1,4 @@
-import {addFileToFileTree, Folder} from "../../base/files.js";
+import {addFileToFileTree, Folder, getFileByPath, isFile} from "../../base/files.js";
 import {Analysis} from "../../base/AllAnalysis.js";
 
 
@@ -23,11 +23,22 @@ async function huggingFaceDatasetsAnalysisTree(fileTree:Folder,userName:string,d
             const fileName = pathArray.pop() as string;
             const rpNum = rootPath.split("/").length;
             pathArray.splice(0,rpNum);
+            const url = `https://huggingface.co/datasets/${userName}/${datasetsName}/resolve/${branchName}/${jsonDatum.path}?download=true`;
             addFileToFileTree(fileTree,pathArray,{
                 name:fileName,
-                url:`https://huggingface.co/datasets/${userName}/${datasetsName}/resolve/${branchName}/${jsonDatum.path}?download=true`,
+                url:url,
                 size:jsonDatum.size
-            })
+            });
+            if(fileName.toUpperCase()=="README.MD"){
+                const fileDir = getFileByPath(fileTree,pathArray);
+                if(fileDir){
+                    try{
+                        fileDir.content = await (await fetch(url)).text();
+                    }catch (error){
+                        throw new Error("HuggingFace Api 请求失败! 请检查网络是否畅通。"+error);
+                    }
+                }
+            }
         }else if(jsonDatum.type=="directory"){
             if (hasDeep>0){
                 await huggingFaceDatasetsAnalysisTree(fileTree,userName,datasetsName,branchName,rootPath,jsonDatum.path,hasDeep-1)
