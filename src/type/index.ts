@@ -4,7 +4,8 @@ export interface PageFilesInfo{
     name:string,
     updateTime?:number,
     size?:number,
-    isFolder?:boolean
+    isFolder?:boolean,
+    content?:string
 }
 
 
@@ -26,7 +27,6 @@ export interface PageFolderData extends PageFolderDataNoChildrenData{
 
 
 export interface FilesPageFrontmatter extends PageFrontmatter{
-    hasContent:boolean,//是否有内容
     title?:string,
 }
 
