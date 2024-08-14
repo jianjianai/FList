@@ -111,6 +111,24 @@ export function addFileToFileTree(baseFileTree:Folder,pathArray:string[],file:Fi
     joinFolderOrFile(folder,file);
 }
 
+/**
+ * 获取指定path的文件或者文件夹
+ */
+export function getFileByPath(baseFileTree:Folder,pathArray:string[]):File|Folder|undefined{
+    let folder:Folder | File = baseFileTree;
+    for (let i = 0; i < pathArray.length; i++) {
+        if(isFile(folder)){
+            return;
+        } 
+        let folderName = pathArray[i];
+        let comeNameFile:Folder | File |undefined = (folder as Folder).children.find((value)=>value.name === folderName);
+        if(!comeNameFile){
+            return;
+        }
+        folder = comeNameFile;
+    }
+    return folder;
+}
 
 /**
  * 递归文件夹中的所有文件
