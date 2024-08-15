@@ -57,8 +57,9 @@ export function githubReposAnalysis(config: GithubRepository): () => Promise<Fol
                 if (resJson.type == "file") {
                     folder.children.push({
                         name: resJson.name,
-                        url: resJson.download_url!,
-                        size: resJson.size
+                        downloadUrl: resJson.download_url!,
+                        size: resJson.size,
+                        downloadCorsAllow: "loose", 
                     });
                     if(resJson.name.toLocaleUpperCase()=="README.MD"){
                         try{

@@ -20,9 +20,10 @@ function copyLink(){
     <FileTypeIcon :fileName="props.file.name" :isFolder="false" class="icon"></FileTypeIcon>
     <div class="name">{{props.file.name}}</div>
     <div class="info">{{fileSizeFormat(props.file.size)}} {{dateFormat(props.file.updateTime)}}</div>
+    <div v-if="props.file.downloadCorsAllow=='verystrict'" style="margin-top: 1rem;font-size: 0.8rem;margin-bottom: -0.5rem;color: var(--tip-color-error);">由于原站严格限制,请复制链接后粘贴到新标签页下载。</div>
     <div class="buttons">
       <AButton class="button-color-grep1" @click="copyLink()">复制链接</AButton>
-      <AButton target="_blank" :href="props.file.downloadUrl">下载</AButton>
+      <AButton target="_blank" :href="props.file.downloadUrl" v-if="props.file.downloadCorsAllow!='verystrict'">下载</AButton>
     </div>
   </div>
 </template>

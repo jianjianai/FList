@@ -55,11 +55,12 @@ async function githubReleasesFileTree(config: GithubRepository): Promise<Folder>
         };
         for (const { browser_download_url, size, name, updated_at, content_type } of assets) {
             joinFile(tagFolder, {
-                url: browser_download_url,
+                downloadUrl: browser_download_url,
                 updateTime: new Date(updated_at).getTime(),
                 size: size,
                 contentType: content_type,
-                name: name
+                name: name,
+                downloadCorsAllow: "loose", 
             });
         }
         let tagPath: string = tag_name;

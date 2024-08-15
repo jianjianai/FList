@@ -10,7 +10,7 @@ const theFile = computed(()=>props.file);
 const viewComponents = computed<ViewComponent[]>(()=>{
   const suffixLastIndex = theFile.value.name.lastIndexOf(".");
   const suffix = suffixLastIndex>=0?theFile.value.name.substring(suffixLastIndex):"";
-  return getViewBySuffix(suffix);
+  return getViewBySuffix(suffix,theFile.value.downloadCorsAllow || "allow");
 });
 const selectEd = ref(0);
 onMounted(()=>{

@@ -64,9 +64,10 @@ export function giteeReleasesFilesAnalysis(config: GithubRepository): Analysis {
             };
             for(const {browser_download_url,name} of assets){
                 joinFile(tagFolder,{
-                    url:browser_download_url,
+                    downloadUrl:browser_download_url,
                     updateTime:new Date(created_at).getTime(),
-                    name:name
+                    name:name,
+                    downloadCorsAllow: "loose", 
                 });
             }
             let tagPath:string = tag_name;

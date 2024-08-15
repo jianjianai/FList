@@ -56,8 +56,9 @@ export function giteeReposAnalysis(config: GiteeRepository): () => Promise<Folde
                 if (resJson.type == "file") {
                     folder.children.push({
                         name: resJson.name,
-                        url: resJson.download_url!,
+                        downloadUrl: resJson.download_url!,
                         // size: resJson.size
+                        downloadCorsAllow: "verystrict", 
                     });
                     if (resJson.name.toLocaleUpperCase() == "README.MD") {
                         try {

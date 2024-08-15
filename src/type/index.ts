@@ -1,5 +1,8 @@
 import {PageFrontmatter} from "vuepress";
 
+/** 是否允许跨域下载 allow:允许跨域 loose:浏览器阻止跨域的资源可以使用,例如视频音频等 strict:通过origin请求头或者其他方法严格限制 verystrict:就连从其他网站点击超链接下载也不行,非常严格的防盗链 */
+export type DownloadCorsAllow = "allow" | "loose" | "strict" | "verystrict";
+
 export interface PageFilesInfo{
     name:string,
     updateTime?:number,
@@ -11,6 +14,7 @@ export interface PageFilesInfo{
 
 export interface PageFileData  extends PageFilesInfo{
     downloadUrl:string,
+    downloadCorsAllow:DownloadCorsAllow,
     contentType?:string
 }
 

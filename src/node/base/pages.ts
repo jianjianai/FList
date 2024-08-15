@@ -22,7 +22,8 @@ export function createFilePage(app: App, path: string, file: File): Promise<Page
             updateTime: file.updateTime,
             size: file.size,
 
-            downloadUrl: file.url,
+            downloadUrl: file.downloadUrl,
+            downloadCorsAllow: file.downloadCorsAllow,
             contentType: file.contentType,
             content: file.content,
         },
@@ -47,7 +48,8 @@ export function createFolderPage(app: App, path: string, folder: Folder): Promis
         if (isFile(children)) {
             return {
                 ...base,
-                downloadUrl: (children as File).url,
+                downloadUrl: (children as File).downloadUrl,
+                downloadCorsAllow: (children as File).downloadCorsAllow,
                 contentType: (children as File).contentType
             }
         }
