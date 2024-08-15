@@ -10,6 +10,7 @@ const theFile = computed(()=>props.file);
 const viewComponents = computed<ViewComponent[]>(()=>{
   const suffixLastIndex = theFile.value.name.lastIndexOf(".");
   const suffix = suffixLastIndex>=0?theFile.value.name.substring(suffixLastIndex):"";
+  if(!__VUEPRESS_SSR__){console.log(`当前 ${theFile.value.name} 文件下载限制等级: ${theFile.value.downloadCorsAllow}`);}
   return getViewBySuffix(suffix,theFile.value.downloadCorsAllow || "allow");
 });
 const selectEd = ref(0);
