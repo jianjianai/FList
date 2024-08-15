@@ -6,12 +6,11 @@ import FLink from "./FButtonLink.vue";
 import {usePageFrontmatter} from "vuepress/client";
 import Notification from "../js/notification/Notification.vue";
 import { FilePageFrontmatter, FolderPageFrontmatter } from "../../type";
-import { File, Folder } from "../../node/base/files";
 import { computed } from "vue";
 import FContent from "./FContent.vue";
 
 const frontmatter = usePageFrontmatter<FolderPageFrontmatter|FilePageFrontmatter>();
-const content = computed(()=>(frontmatter.value.file as File)?.content || (frontmatter.value.folder as Folder)?.content);
+const content = computed(()=>frontmatter.value.flistData?.content);
 
 </script>
 

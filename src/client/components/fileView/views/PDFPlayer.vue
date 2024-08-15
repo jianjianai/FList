@@ -11,7 +11,7 @@ const pdfData = ref<Uint8Array>();
 const pdfLoadError = ref(false)
 onMounted( async ()=>{
   try{
-    const res = await fetch(props.file.url);
+    const res = await fetch(props.file.downloadUrl);
     if(!res.ok){
       putNotification({message:"加载 pdf 文件失败!",type:"error",time:10000});
       return;

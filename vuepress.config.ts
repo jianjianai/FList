@@ -9,6 +9,7 @@ import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
 import { netlifyDownProxy } from './src/node/proxy/netlifyDownProxy/index.js';
 import { giteeReleasesFilesAnalysis } from './src/node/analysis/giteeReleasesFilesAnalysis/index.js';
 import { githubReposAnalysis } from './src/node/analysis/githubReposAnalysis/index.js';
+import { giteeReposAnalysis } from './src/node/analysis/giteeReposAnalysis/index.js';
 
 
 /**
@@ -71,12 +72,19 @@ export default defineUserConfig({
       }),
     },
     {
-      mountPath: "/gitee测试",
+      mountPath: "/gitee测试/发行版",
       analysis: giteeReleasesFilesAnalysis({
         user: "jja8",
         repository: "flist-test",
         direction: "desc"
       })
+    },
+    {
+      mountPath: "/gitee测试/仓库",
+      analysis: giteeReposAnalysis({
+        user: "jja8",
+        repository: "flist-test"
+      }),
     },
     {
       mountPath: "/ProgrammingVTuberLogos",

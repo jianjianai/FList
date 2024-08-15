@@ -14,7 +14,7 @@ const loadError = ref(false);
 const innerHTML = ref<string>();
 onMounted( async ()=>{
   try{
-    const res = await fetch(props.file.url);
+    const res = await fetch(props.file.downloadUrl);
     if(!res.ok){
       putNotification({message:"加载 markdown 文件失败!",type:"error",time:10000});
     }

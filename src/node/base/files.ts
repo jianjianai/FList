@@ -1,3 +1,5 @@
+import { DownloadCorsAllow } from "../../type/index.js";
+
 export interface FilesInfo{
     name:string,
     title?:string,
@@ -6,7 +8,8 @@ export interface FilesInfo{
     size?:number,
 }
 export interface File extends FilesInfo{
-    url:string,
+    downloadUrl:string,
+    downloadCorsAllow:DownloadCorsAllow,
     contentType?:string
 }
 export interface Folder extends FilesInfo{

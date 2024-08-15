@@ -26,8 +26,9 @@ async function huggingFaceDatasetsAnalysisTree(fileTree:Folder,userName:string,d
             const url = `https://huggingface.co/datasets/${userName}/${datasetsName}/resolve/${branchName}/${jsonDatum.path}?download=true`;
             addFileToFileTree(fileTree,pathArray,{
                 name:fileName,
-                url:url,
-                size:jsonDatum.size
+                downloadUrl:url,
+                size:jsonDatum.size,
+                downloadCorsAllow:"allow" //huggingface的下载链接是允许跨域的
             });
             if(fileName.toUpperCase()=="README.MD"){
                 const fileDir = getFileByPath(fileTree,pathArray);
