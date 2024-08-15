@@ -43,7 +43,7 @@ const fileTypesSuffixConfig:[string[],ViewComponent[]][] = [
     [[".md"],[MarkdownPlayer]],
     [[".jpg",".jpeg",".png",".gif",".bmp",".webp",".svg",".ico",".tiff",],[ImgPlayer]],
     [[".pdf"],[PDFPlayer]],
-    [[".txt",".text",".md"],[PreTextPlayer]],
+    [[".txt",".text",".md",".yml",".yaml",".json"],[PreTextPlayer]],
 ]
 
 const fileTypesSuffix: {[suffix: string]: ViewComponent[]} = {};
@@ -61,7 +61,6 @@ for (const k in fileTypesSuffix) {
 }
 
 export function getViewBySuffix(suffix:string,downloadCorsAllow:DownloadCorsAllow):ViewComponent[] {
-    console.log(`当前${suffix}文件下载限制等级: ${downloadCorsAllow}`);
     const com = fileTypesSuffix[suffix.toLowerCase()];
     if(com){
         const downloadCorsAllowDrade = downloadCorsAllowDradeMap[downloadCorsAllow];
