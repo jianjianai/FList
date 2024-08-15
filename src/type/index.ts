@@ -10,7 +10,7 @@ export interface PageFilesInfo{
 
 
 export interface PageFileData  extends PageFilesInfo{
-    url:string,
+    downloadUrl:string,
     contentType?:string
 }
 
@@ -27,16 +27,18 @@ export interface PageFolderData extends PageFolderDataNoChildrenData{
 
 
 export interface FilesPageFrontmatter extends PageFrontmatter{
+    layout: 'Folder' | 'File',
     title?:string,
+    flistData:PageFolderData|PageFileData
 }
 
 export interface FolderPageFrontmatter extends FilesPageFrontmatter{
     layout: 'Folder',
-    folder: PageFolderData,
+    flistData: PageFolderData,
 }
 
 export interface FilePageFrontmatter extends FilesPageFrontmatter{
     layout: 'File',
-    file: PageFileData
+    flistData: PageFileData
 }
 

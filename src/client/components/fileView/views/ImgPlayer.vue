@@ -27,7 +27,7 @@ function error(){
   <div class="img-player">
     <div class="img-body">
       <Viewer class="img-view" :options="options" >
-        <img class="inner-img" :src="props.file.url" :alt="props.file.name" @error="error()">
+        <img class="inner-img" :src="props.file.downloadUrl" :alt="props.file.name" @error="error()">
       </Viewer>
     </div>
   </div>

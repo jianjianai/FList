@@ -17,12 +17,12 @@ export function createFilePage(app: App, path: string, file: File): Promise<Page
     const frontmatter: FilePageFrontmatter = {
         layout: 'File',
         title: file.name,
-        file: {
+        flistData: {
             name: file.name,
             updateTime: file.updateTime,
             size: file.size,
 
-            url: file.url,
+            downloadUrl: file.url,
             contentType: file.contentType,
             content: file.content,
         },
@@ -47,7 +47,7 @@ export function createFolderPage(app: App, path: string, folder: Folder): Promis
         if (isFile(children)) {
             return {
                 ...base,
-                url: (children as File).url,
+                downloadUrl: (children as File).url,
                 contentType: (children as File).contentType
             }
         }
@@ -59,7 +59,7 @@ export function createFolderPage(app: App, path: string, folder: Folder): Promis
     const frontmatter: FolderPageFrontmatter = {
         layout: 'Folder',
         title: folder.title,
-        folder: {
+        flistData: {
             name: folder.name,
             size: folder.size,
             updateTime: folder.updateTime,

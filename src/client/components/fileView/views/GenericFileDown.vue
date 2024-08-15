@@ -9,7 +9,7 @@ import FileTypeIcon from "../../FileTypeIcon.vue";
 const props = defineProps<{file:PageFileData}>()
 
 function copyLink(){
-  navigator.clipboard.writeText(new URL(props.file.url, window.location.origin).toString());
+  navigator.clipboard.writeText(new URL(props.file.downloadUrl, window.location.origin).toString());
   putNotification({message: "链接已复制", type: "success"});
 }
 
@@ -22,7 +22,7 @@ function copyLink(){
     <div class="info">{{fileSizeFormat(props.file.size)}} {{dateFormat(props.file.updateTime)}}</div>
     <div class="buttons">
       <AButton class="button-color-grep1" @click="copyLink()">复制链接</AButton>
-      <AButton target="_blank" :href="props.file.url">下载</AButton>
+      <AButton target="_blank" :href="props.file.downloadUrl">下载</AButton>
     </div>
   </div>
 </template>

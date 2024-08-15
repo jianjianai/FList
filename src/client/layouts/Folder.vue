@@ -10,7 +10,7 @@ import {computed, ref, watch} from "vue";
 import ArrowDown from "../imgs/ui/ArrowDown.vue";
 
 const frontmatter = usePageFrontmatter<FolderPageFrontmatter>();
-const children = computed(()=>frontmatter.value.folder?.children || []);
+const children = computed(()=>frontmatter.value.flistData?.children || []);
 
 //排序
 const sortType = ref<"name-asc"|"name-desc"|"size-asc"|"size-desc"|"item-asc"|"item-desc">();
@@ -109,7 +109,7 @@ watch(sortType,()=>{
         </div>
         <!--      行-->
         <TransitionGroup name="list">
-          <FButtonLink class="td" v-for="file of showChildren" :key="file.name" :to="`./${encodeURI(file.name)}/`">
+          <FButtonLink class="td" v-for="file of showChildren" :key="file.name" :to="`./${encodeURI(file.name).replaceAll(',','_')}/`">
             <div class="t-name">
               <FileTypeIcon class="file-icon" :class="{folder:file.isFolder}" :isFolder="!!file.isFolder" :fileName="file.name" />
               <span class="file-name" :title="file.name">{{file.name}}</span>
