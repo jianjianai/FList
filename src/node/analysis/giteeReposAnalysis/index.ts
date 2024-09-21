@@ -1,4 +1,4 @@
-import { Folder } from "../../base/files.js";
+import { Folder,isFile } from "../../base/files.js";
 
 /**
  * 代表一个github仓库
@@ -16,6 +16,8 @@ export interface GiteeRepository {
     access_token?: string,
     //最大深度
     maxDeep?: number
+    //隐藏readme文件
+    hideReadme?: boolean
 }
 
 export function giteeReposAnalysis(config: GiteeRepository): () => Promise<Folder> {
@@ -54,18 +56,26 @@ export function giteeReposAnalysis(config: GiteeRepository): () => Promise<Folde
             };
             for (const resJson of resJsons) {
                 if (resJson.type == "file") {
-                    folder.children.push({
-                        name: resJson.name,
-                        downloadUrl: resJson.download_url!,
-                        // size: resJson.size
-                        downloadCorsAllow: "verystrict", 
-                    });
+                    //特性1: 如果是README.MD文件，就获取内容,设置到content中
+                    let pushThis = true;
                     if (resJson.name.toLocaleUpperCase() == "README.MD") {
                         try {
                             folder.content = await (await fetch(resJson.download_url!)).text();
                         } catch (e) {
                             throw new Error("Gitee Api 请求失败! 请检查网络是否畅通。" + e + " " + resJson.download_url);
                         }
+                        //如果隐藏readme文件就不添加这个文件
+                        if (config.hideReadme){
+                            pushThis = false;
+                        }
+                    }
+                    if (pushThis){
+                        folder.children.push({
+                            name: resJson.name,
+                            downloadUrl: resJson.download_url!,
+                            // size: resJson.size
+                            downloadCorsAllow: "verystrict",
+                        });
                     }
                 } else if (resJson.type == "dir") {
                     if (hasDeep > 0) {
@@ -73,6 +83,31 @@ export function giteeReposAnalysis(config: GiteeRepository): () => Promise<Folde
                     }
                 }
             }
+
+            //特性2: 如果是 [name].README.MD 文件,就查找 [name] 文件然后设置到[name]文件的content中
+            for (let i = 0; i < folder.children.length; i++) {
+                const child = folder.children[i];
+                const endWith = ".README.MD";
+                if (!child.name.toUpperCase().endsWith(endWith)) {
+                    continue;
+                }
+                const name = child.name.substring(0, child.name.length - endWith.length);
+                const cF = folder.children.find((value) => value.name == name && isFile(value));
+                if (!cF) {
+                    continue;
+                }
+                //如果隐藏readme文件就删除
+                if (config.hideReadme){
+                    folder.children.splice(i,1);
+                    i--;
+                }
+                try{
+                    cF.content=await (await fetch(child.downloadUrl)).text();
+                }catch(e) {
+                    throw new Error("Gitee Api 请求失败! 请检查网络是否畅通。" + e + " " + child.downloadUrl);
+                }
+            }
+
             return folder;
         }
         return await getPath(config.rootPath || "", "githubReposAnalysisRoot", config.maxDeep || 10);
