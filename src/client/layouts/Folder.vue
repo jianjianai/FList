@@ -109,7 +109,7 @@ watch(sortType,()=>{
         </div>
         <!--      行-->
         <TransitionGroup name="list">
-          <FButtonLink class="td" v-for="file of showChildren" :key="file.name" :to="`./${encodeURI(file.name).replaceAll(',','_')}/`">
+          <FButtonLink class="td" v-for="file of showChildren" :key="file.name" :to="`./${encodeURI(file.name).replaceAll(',','_').replaceAll('+','_')}/`">
             <div class="t-name">
               <FileTypeIcon class="file-icon" :class="{folder:file.isFolder}" :isFolder="!!file.isFolder" :fileName="file.name" />
               <span class="file-name" :title="file.name">{{file.name}}</span>
