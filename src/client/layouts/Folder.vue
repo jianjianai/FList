@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePageFrontmatter } from 'vuepress/client';
+import {usePageFrontmatter, useRoute} from 'vuepress/client';
 import {FolderPageFrontmatter} from "../../type/index.js";
 import FilesPageMain from "../components/FilesPageMain.vue";
 import FButtonLink from "../components/FButtonLink.vue";
@@ -11,6 +11,7 @@ import ArrowDown from "../imgs/ui/ArrowDown.vue";
 
 const frontmatter = usePageFrontmatter<FolderPageFrontmatter>();
 const children = computed(()=>frontmatter.value.flistData?.children || []);
+const route = useRoute();
 
 //排序
 const sortType = ref<"name-asc"|"name-desc"|"size-asc"|"size-desc"|"item-asc"|"item-desc">();
@@ -84,14 +85,14 @@ const showChildren = computed(()=>{
   return children.value;
 });
 
-//用于开关排序动画
-const sortStart = ref(false);
-watch(children,()=>{
-  sortStart.value = false;
-});
-watch(sortType,()=>{
-  sortStart.value = true;
-});
+// //用于开关排序动画
+// const sortStart = ref(false);
+// watch(children,()=>{
+//   sortStart.value = false;
+// });
+// watch(sortType,()=>{
+//   sortStart.value = true;
+// });
 
 
 
@@ -100,7 +101,7 @@ watch(sortType,()=>{
 <template>
   <FilesPageMain>
     <template #default v-if="showChildren && showChildren.length>0">
-      <div class="files" :class="{'sort-start':sortStart}">
+      <div class="files sort-start">
         <!--      表头-->
         <div class="th">
           <div class="thc t-name" @click="sortType=sortType=='name-asc'?'name-desc':sortType=='name-desc'?undefined:'name-asc'"><span>名称</span><ArrowDown class="sort-icon" :class="{asc:sortType=='name-asc',desc:sortType=='name-desc'}"></ArrowDown></div>
@@ -108,7 +109,7 @@ watch(sortType,()=>{
           <div class="thc t-up-item" @click="sortType=sortType=='item-asc'?'item-desc':sortType=='item-desc'?undefined:'item-asc'"><ArrowDown class="sort-icon" :class="{asc:sortType=='item-asc',desc:sortType=='item-desc'}"></ArrowDown><span>更新时间</span></div>
         </div>
         <!--      行-->
-        <TransitionGroup name="list">
+        <TransitionGroup name="list" :key="route.path">
           <FButtonLink class="td" v-for="file of showChildren" :key="file.name" :to="`./${encodeURI(file.name).replaceAll(',','_').replaceAll('+','_')}/`">
             <div class="t-name">
               <FileTypeIcon class="file-icon" :class="{folder:file.isFolder}" :isFolder="!!file.isFolder" :fileName="file.name" />
