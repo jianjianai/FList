@@ -18,7 +18,7 @@ onMounted(()=>{
     container: aplayerEl.value,
     audio: [{
       name: props.file.name,
-      url: props.file.url,
+      url: props.file.downloadUrl,
       cover: coverUrl,
       artist: dateFormat(props.file.updateTime)+" - "+fileSizeFormat(props.file.size),
     }],
