@@ -5,7 +5,9 @@
 
 
 ### 演示站
-- [https://demo.flist.jjaw.cn/](https://demo.flist.jjaw.cn/)
+- Cloudflare Pages -> [https://demo.flist.jjaw.cn/](https://demo.flist.jjaw.cn/)
+- Vercel -> [https://demo1.flist.jjaw.cn/](https://demo1.flist.jjaw.cn/)
+- Netlify -> [https://demo2.flist.jjaw.cn/](https://demo2.flist.jjaw.cn/)
 
 ### 创建自己的Flist
 [-> 点击前往 <-](https://jjaw.cn/2024/8/3/flist-fast-start/)
