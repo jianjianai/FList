@@ -92,7 +92,7 @@ export default defineUserConfig({
         user: "Aikoyori",
         repository: "ProgrammingVTuberLogos",
       }),
-      downProxy: cloudflarePagesDownProxy()
+      downProxy: netlifyDownProxy()
     },
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
