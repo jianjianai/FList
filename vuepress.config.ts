@@ -2,7 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { FileList } from './src/node/index.js'
 import { githubReleasesFilesAnalysis } from "./src/node/analysis/githubReleasesFilesAnalysis/index.js";
-import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownProxy/index.js";
+import { vercelDownProxy } from "./src/node/proxy/vercelDownProxy/index.js";
 import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/index.js";
 import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceDatasetsAnalysis/index.js";
 import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
@@ -92,7 +92,7 @@ export default defineUserConfig({
         user: "Aikoyori",
         repository: "ProgrammingVTuberLogos",
       }),
-      downProxy: cloudflarePagesDownProxy()
+      downProxy: vercelDownProxy()
     },
     // ... 可以配置多个挂载路径和仓库，以此类推
   ])
