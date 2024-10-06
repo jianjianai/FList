@@ -12,18 +12,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/markdown-it": "^14.1.1",
+    "@types/markdown-it": "^14.1.2",
     "@vuepress/bundler-vite": "2.0.0-rc.14",
     "@vuepress/plugin-nprogress": "2.0.0-rc.38",
     "aplayer": "^1.10.1",
-    "artplayer": "^5.1.6",
+    "artplayer": "^5.1.7",
     "markdown-it": "^14.1.0",
     "pdf-vue3": "^1.0.12",
-    "typescript": "^5.5.3",
-    "v-viewer": "^3.0.11",
+    "typescript": "^5.5.4",
+    "v-viewer": "^3.0.13",
     "viewerjs": "^1.11.6",
-    "vite": "^5.3.3",
-    "vue": "^3.4.31",
+    "vite": "^5.4.1",
+    "vue": "^3.4.38",
     "vuepress": "2.0.0-rc.14"
   }
 }

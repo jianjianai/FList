@@ -12,7 +12,7 @@ let artPlayer:Artplayer|null = null;
 onMounted(()=>{
   artPlayer = new Artplayer({
     container: '.artplayer-app',
-    url: props.file.url,
+    url: props.file.downloadUrl,
     lang: navigator.language.toLowerCase(),
     theme:"#0092ff",
     autoMini:true,

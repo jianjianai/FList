@@ -23,7 +23,8 @@ export function fileUrlTreeAnalysis(config:FileUrlTree):Analysis{
             const fileName = pathArray.pop() as string;
             addFileToFileTree(fileTree,pathArray,{
                 name:fileName,
-                url:url,
+                downloadUrl:url,
+                downloadCorsAllow: "allow", 
             });
         }
         return fileTree;

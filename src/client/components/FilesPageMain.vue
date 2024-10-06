@@ -4,11 +4,13 @@ import PagBreadcrumb from "./PagBreadcrumb.vue";
 import MainBox from "./MainBox.vue";
 import FLink from "./FButtonLink.vue";
 import {usePageFrontmatter} from "vuepress/client";
-import {computed} from "vue";
 import Notification from "../js/notification/Notification.vue";
+import { FilePageFrontmatter, FolderPageFrontmatter } from "../../type";
+import { computed } from "vue";
+import FContent from "./FContent.vue";
 
-const frontmatter = usePageFrontmatter();
-const hasContent = computed(()=>frontmatter.value.hasContent);
+const frontmatter = usePageFrontmatter<FolderPageFrontmatter|FilePageFrontmatter>();
+const content = computed(()=>frontmatter.value.flistData?.content);
 
 </script>
 
@@ -20,9 +22,7 @@ const hasContent = computed(()=>frontmatter.value.hasContent);
       <MainBox v-if="$slots.default">
         <slot></slot>
       </MainBox>
-      <MainBox v-if="hasContent" style="padding: 1rem">
-        <Content class="markdown-body"></Content>
-      </MainBox>
+      <FContent v-if="content" :content="content" style="padding: 1rem"></FContent>
     </div>
     <div class="footer">
       <FLink to="https://github.com/jianjianai/FList">由 FList 强力驱动</FLink>

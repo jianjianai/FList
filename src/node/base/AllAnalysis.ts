@@ -23,7 +23,8 @@ async function analysisAndDownProxy(config:AnalysisConfig):Promise<Folder>{
     }
     const allFile = deepGetAllFile(folder);
     for (let file of allFile) {
-        file.url = await config.downProxy(file.url,file.name,file.contentType);
+        file.downloadUrl = await config.downProxy(file.downloadUrl,file.name,file.contentType);
+        file.downloadCorsAllow = "allow";
     }
     return folder;
 }

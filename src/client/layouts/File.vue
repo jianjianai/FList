@@ -11,7 +11,7 @@ const frontmatter = usePageFrontmatter<FilePageFrontmatter>();
 
 <template>
   <FilesPageMain>
-    <FileView :file="frontmatter.file!"></FileView>
+    <FileView :file="frontmatter.flistData!"></FileView>
   </FilesPageMain>
 </template>
 
