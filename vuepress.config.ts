@@ -16,5 +16,9 @@ export default defineUserConfig({
   // 页面预加载，所有其它页面所需的文件都会被预拉取。这对于小型站点来说是十分有帮助的，因为它会大大提升页面切换的速度。但是在你的网站有很多页面时不建议你这么做。
   // 简单来说就是，如果你的文件不多就可以打开这个选项，可以大大提高页面切换的速度，如果文件非常多就不建议打开。建议超过100个文件就不要打开这个选项。
   shouldPrefetch: true,
-  theme: FileList({ fileUrls: [] })
+  theme: FileList({
+  fileUrls: [],
+  analysis: [],
+  repository: []
+})
 })
