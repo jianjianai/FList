@@ -17,21 +17,9 @@ export default defineUserConfig({
   // 简单来说就是，如果你的文件不多就可以打开这个选项，可以大大提高页面切换的速度，如果文件非常多就不建议打开。建议超过100个文件就不要打开这个选项。
   shouldPrefetch: true,
   theme: FileList({
-  fileUrls: [],
-  analysis: [
-    {
-      mountPath: "/",
-      analysis: {
-        type: "githubReleasesFilesAnalysis",
-        options: {
-          user: "wangwenhao20211",
-          repository: "game-download"
-        }
-      },
-      downProxy: {
-        type: "cloudflarePagesDownProxy"
-      }
-    }
-  ]
+  fileUrls: [
+    "https://github.com/wangwenhao20211/game-download/releases/download/BB2DSO_v0.9/BB2DSO.v0.9.apk"
+  ],
+  analysis: []
 })
 })
