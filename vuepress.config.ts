@@ -21,10 +21,13 @@ export default defineUserConfig({
   analysis: [
     {
       mountPath: "/",
-      analysis: githubReleasesFilesAnalysis({ 
-        user: "wangwenhao20211", 
-        repository: "game-download" 
-      }),
+      analysis: {
+        type: "githubReleasesFilesAnalysis",
+        options: {
+          user: "wangwenhao20211",
+          repository: "game-download"
+        }
+      },
       downProxy: {
         type: "cloudflarePagesDownProxy"
       }
